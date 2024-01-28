@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for
 app = Flask(__name__)
 
 
+@app.route("/")
 def home():
     return "Welcome to Excalibur 6738 ScoutSystem <H1>6738<H1>"
 @app.route("/admin")
