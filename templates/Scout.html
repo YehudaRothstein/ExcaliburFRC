@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Scout{% endblock %}
+{% block content %}
+
+<form action="{{ url_for('process_form') }}" method="post">
+
+    <p>Qual Number:</p>
+    <p><input type="text" name="qual_number"></p>
+
+    <p>Team:</p>
+    <p><input type="text" name="team"></p>
+
+    <!-- Button with "Next" text -->
+    <p><button type="submit" name="submit_button">Next</button></p>
+
+</form>
+
+{% endblock %}

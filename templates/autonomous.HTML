@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Scout{% endblock %}
+{% block content %}
+
+<form action="#" method="post">
+
+    <h3>AMP:</h3>
+    <p>
+        <button type="button" onclick="changeValue(1)">+</button>
+        <span id="amp_value">0</span>
+        <button type="button" onclick="changeValue(-1)">-</button>
+    </p>
+
+    <!-- Hidden input field to store the current value -->
+    <input type="hidden" name="amp_value" id="hidden_amp_value" value="0">
+
+    <script>
+        // JavaScript function to update the displayed value
+        function changeValue(amount) {
+            var currentValue = parseInt(document.getElementById("amp_value").innerText);
+            var newValue = currentValue + amount;
+
+            // Update the displayed value
+            document.getElementById("amp_value").innerText = newValue;
+
+            // Update the hidden input field value
+            document.getElementById("hidden_amp_value").value = newValue;
+        }
+    </script>
+
+    <p><button type="submit" name="submit_button">Submit</button></p>
+
+</form>
+
+{% endblock %}
+
