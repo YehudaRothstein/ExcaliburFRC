@@ -49,4 +49,4 @@ def process_form():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="10.97.227.171", port=5000)
