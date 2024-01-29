@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, redirect, url_for, request, jsonify
+from flask import Flask, render_template, redirect, url_for, request, jsonify, send_from_directory
 import json
 
 from pip._internal.utils import datetime
@@ -45,7 +45,7 @@ def process_form():
     autonomus_data = request.form.to_dict()
 
     # Write to JSON file
-    with open("Data.JSON", "w") as file:
+    with open("static/Data.JSON", "w") as file:
         json.dump(autonomus_data, file)
 
     return "Data saved successfully"
@@ -55,8 +55,11 @@ def process_form():
 def Autonomus():
     return render_template("autonomous.html")
 
+@app.route('/get-json')
+def get_json():
+    return send_from_directory('static', 'Data.json')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="172.20.10.2", port=5000, debug=True)
     app.secret_key = 'your_secret_key_here'
 
