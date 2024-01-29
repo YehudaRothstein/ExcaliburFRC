@@ -60,6 +60,6 @@ def get_json():
     return send_from_directory('static', 'Data.json')
 
 if __name__ == '__main__':
-    app.run(host="10.97.227.83", port=5000)
+    app.run(host="10.97.227.83", port=5000, debug=True)
     app.secret_key = 'your_secret_key_here'
 
