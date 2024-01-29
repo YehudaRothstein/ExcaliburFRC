@@ -13,7 +13,7 @@ def home_with_name(name):
     return render_template("index.html")
 
 
-@app.route("/test")
+@app.route("/home")
 def test():
     return render_template("new.html")
 
@@ -60,6 +60,6 @@ def get_json():
     return send_from_directory('static', 'Data.json')
 
 if __name__ == '__main__':
-    app.run(host="172.20.10.2", port=5000, debug=True)
+    app.run(host="10.97.227.83", port=5000)
     app.secret_key = 'your_secret_key_here'
 

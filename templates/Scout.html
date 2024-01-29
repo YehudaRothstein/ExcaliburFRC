@@ -2,7 +2,15 @@
 {% block title %}Scout{% endblock %}
 {% block content %}
 
+<style>
+    body {
+        margin: 20px; /* Adjust the value as needed */
+    }
+</style>
+
 <form action="{{ url_for('Autonomus') }}" method="post">
+
+    <br>
 
     <p>Qual Number:</p>
     <p><input type="text" name="qual_number"></p>
