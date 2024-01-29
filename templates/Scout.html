@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Scout{% endblock %}
+{% block content %}
+
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    h6 {
+        font-weight: normal
+    }
+
+    h6, p, input, select, button {
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+        box-sizing: border-box; /* Ensure padding and border are included in the width */
+    }
+
+    select {
+        max-width: calc(100%);
+    }
+
+    button {
+        margin-top: 20px;
+    }
+
+    /* Added styling for image container */
+    .image-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /* Added styling for images */
+    img {
+        width: 45%; /* Adjust as needed */
+        height: auto;
+    }
+</style>
+
+<head>
+    <link rel="stylesheet" href="base.css">
+</head>
+
+<form action="{{ url_for('Autonomus') }}" method="post">
+
+    <p>Your name:</p>
+    <input type="text" name="scouter_name">
+
+    <p>Qual Number:</p>
+    <input type="text" name="qual_number">
+
+    <p>Team:</p>
+    <input type="text" name="team">
+
+    <h6>Select Alliance:</h6>
+    <select name="Alliances Options" id="alliance-select">
+        <option value="">Please choose an alliance</option>
+        <option value="Blue">Blue</option>
+        <option value="Red">Red</option>
+    </select>
+
+    <br>
+    <br>
+    <h2>Autonomous</h2>
+
+    <!-- Added a div container for the images with a class 'image-container' -->
+    <div class="image-container">
+        <img src="https://github.com/YehudaRothstein/ExcaliburFRC/blob/GUI-Branch/templates/img/AMP.png?raw=true" alt="img//AMP.png">
+        <img src="https://github.com/YehudaRothstein/ExcaliburFRC/blob/GUI-Branch/templates/img/speaker.png?raw=true" alt="img//speaker.png">
+    </div>
+
+</form>
+
+{% endblock %}
