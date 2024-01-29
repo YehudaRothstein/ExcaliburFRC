@@ -6,7 +6,7 @@ import json
 from pip._internal.utils import datetime
 
 app = Flask(__name__)
-
+session = {}
 
 @app.route("/<name>")
 def home_with_name(name):
@@ -32,7 +32,7 @@ def ReportBug():
 def user(usr):
     return f"<h1>{usr}</h1>"
 
-global session
+
 @app.route("/Scout", methods=["POST", "GET"])
 def Scout():
     if request.method == 'POST':
