@@ -36,8 +36,12 @@ def user(usr):
 @app.route("/Scout", methods=["POST", "GET"])
 def Scout():
     if request.method == 'POST':
-        session['scout_data'] = request.form.to_dict()
-        return redirect(url_for('Autonomus'))
+        scout_data = request.form.to_dict()
+
+        with open("static/Data.json", "w") as file:
+            json.dump(scout_data, file)
+
+
     return render_template("Scout.html")
 
 @app.route("/process_form", methods=["POST"])
@@ -51,7 +55,7 @@ def process_form():
     return "Data saved successfully"
 
 
-@app.route("/Autonomus", methods=["POST", "GET"])
+@app.route("/Autonomous", methods=["POST", "GET"])
 def Autonomus():
     return render_template("autonomous.html")
 

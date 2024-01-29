@@ -2,7 +2,14 @@
 {% block title %}Scout{% endblock %}
 {% block content %}
 
+<link rel="stylesheet" type="text/css" href="C:\Users\PC -23\PycharmProjects\ExcaliburFRC\templates">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
+    body {
+  background-color: #012265;
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -10,11 +17,17 @@
         margin: 20px;
     }
 
-    h6 {
-        font-weight: normal
+    h6, p, h2{
+        font-weight: normal;
+        color: #d3af37;
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+        box-sizing: border-box;
     }
 
-    h6, p, input, select, button {
+    input, select, button {
+        background-color: #d3af37;
         width: 100%;
         margin-bottom: 10px;
         text-align: center;
@@ -22,23 +35,46 @@
     }
 
     select {
-        max-width: calc(100%);
+            font-weight: normal;
+          background-color: #d3af37;
+        max-width: 100%; /* Remove calc for smaller screens */
     }
 
     button {
-        margin-top: 20px;
+          background-color: #d3af37;
+        margin-top: 10px; /* Adjusted margin for the plus button */
     }
 
     /* Added styling for image container */
     .image-container {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column; /* Stack images on top of each other on smaller screens */
+        align-items: center; /* Center images on smaller screens */
     }
 
     /* Added styling for images */
     img {
-        width: 45%; /* Adjust as needed */
+        width: 100%; /* Adjust as needed */
         height: auto;
+        margin-bottom: 10px; /* Add space between images on smaller screens */
+    }
+
+    /* Added styling for checkbox */
+    .checkbox-container {
+        display: flex;
+        align-items: center; /* Align items horizontally */
+    }
+
+    /* Media query for screens with a maximum width of 600px (adjust as needed) */
+    @media (max-width: 600px) {
+        .image-container {
+            flex-direction: row; /* Align images side by side on larger screens */
+        }
+
+        img {
+            width: 45%; /* Reset width for larger screens */
+            margin-bottom: 0; /* Reset margin for larger screens */
+        }
     }
 </style>
 
@@ -46,7 +82,7 @@
     <link rel="stylesheet" href="base.css">
 </head>
 
-<form action="{{ url_for('Autonomus') }}" method="post">
+<form action="{{ url_for('Autonomus') }}" method="post" onsubmit="return false;">
 
     <p>Your name:</p>
     <input type="text" name="scouter_name">
@@ -64,16 +100,105 @@
         <option value="Red">Red</option>
     </select>
 
+    <script>
+    function updateCounter(change, counterId, category) {
+        let counterValue = parseInt(document.getElementById(counterId).value);
+        counterValue = Math.max(0, counterValue + change);
+        document.getElementById(counterId).value = counterValue;
+
+        // Update the total counters for each category
+        let totalCounterId = 'totalCounter' + category;
+        let totalCounterValue = parseInt(document.getElementById(totalCounterId).value);
+        totalCounterValue = Math.max(0, totalCounterValue + change);
+        document.getElementById(totalCounterId).value = totalCounterValue;
+    }
+    </script>
+
     <br>
     <br>
     <h2>Autonomous</h2>
 
-    <!-- Added a div container for the images with a class 'image-container' -->
-    <div class="image-container">
-        <img src="https://github.com/YehudaRothstein/ExcaliburFRC/blob/GUI-Branch/templates/img/AMP.png?raw=true" alt="img//AMP.png">
-        <img src="https://github.com/YehudaRothstein/ExcaliburFRC/blob/GUI-Branch/templates/img/speaker.png?raw=true" alt="img//speaker.png">
+    <h6>AMP:</h6>
+    <div class="button-set">
+        <button onclick="updateCounter(-1, 'counter1', 'Autonomous')">-</button>
+        <input type="text" id="counter1" value="0" readonly>
+        <button onclick="updateCounter(1, 'counter1', 'Autonomous')">+</button>
     </div>
 
+    <h6>Speaker:</h6>
+    <div class="button-set">
+        <button onclick="updateCounter(-1, 'counter2', 'Autonomous')">-</button>
+        <input type="text" id="counter2" value="0" readonly>
+        <button onclick="updateCounter(1, 'counter2', 'Autonomous')">+</button>
+    </div>
+
+    <div class="checkbox-container">
+        <input type="checkbox" id="vehicle2" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle2">Leaving the area</label>
+    </div>
+
+
+    <h2>Teleop</h2>
+
+    <h6>AMP:</h6>
+    <div class="button-set">
+        <button onclick="updateCounter(-1, 'counter3', 'Teleop')">-</button>
+        <input type="text" id="counter3" value="0" readonly>
+        <button onclick="updateCounter(1, 'counter3', 'Teleop')">+</button>
+    </div>
+
+    <h6>Speaker:</h6>
+    <div class="button-set">
+        <button onclick="updateCounter(-1, 'counter4', 'Teleop')">-</button>
+        <input type="text" id="counter4" value="0" readonly>
+        <button onclick="updateCounter(1, 'counter4', 'Teleop')">+</button>
+    </div>
+
+    <div class="checkbox-container">
+        <input type="checkbox" id="vehicle3" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle2">Click Cooperation</label>
+    </div>
+
+    <div class="checkbox-container">
+        <input type="checkbox" id="vehicle4" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle2">Cooperation point</label>
+    </div>
+
+    <h2>EndGame</h2>
+
+    <h6>AMP:</h6>
+    <div class="button-set">
+        <button onclick="updateCounter(-1, 'counter5', 'EndGame')">-</button>
+        <input type="text" id="counter5" value="0" readonly>
+        <button onclick="updateCounter(1, 'counter5', 'EndGame')">+</button>
+    </div>
+
+    <h6>Speaker:</h6>
+    <div class="button-set">
+        <button onclick="updateCounter(-1, 'counter6', 'EndGame')">-</button>
+        <input type="text" id="counter6" value="0" readonly>
+        <button onclick="updateCounter(1, 'counter6', 'EndGame')">+</button>
+    </div>
+
+    <h6>Trap:</h6>
+    <div class="button-set">
+        <button onclick="updateCounter(-1, 'counter7', 'EndGame')">-</button>
+        <input type="text" id="counter7" value="0" readonly>
+        <button onclick="updateCounter(1, 'counter7', 'EndGame')">+</button>
+    </div>
+
+    <div class="checkbox-container">
+        <input type="checkbox" id="vehicle5" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle2">Climb</label>
+    </div>
+
+    <div class="checkbox-container">
+        <input type="checkbox" id="vehicle6" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle2">Climbed with another robot</label>
+    </div>
 </form>
+
+<button type="button">Submit</button>
+
 
 {% endblock %}
