@@ -28,6 +28,18 @@
     button {
         margin-top: 20px;
     }
+
+    /* Added styling for image container */
+    .image-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /* Added styling for images */
+    img {
+        width: 45%; /* Adjust as needed */
+        height: auto;
+    }
 </style>
 
 <head>
@@ -55,8 +67,12 @@
     <br>
     <br>
     <h2>Autonomous</h2>
-    <img src="https://github.com/YehudaRothstein/ExcaliburFRC/blob/GUI-Branch/templates/img/AMP.png?raw=true" alt="img//AMP.png">
-    <img src="https://github.com/YehudaRothstein/ExcaliburFRC/blob/GUI-Branch/templates/img/AMP.png?raw=true" alt="img//AMP.png">
+
+    <!-- Added a div container for the images with a class 'image-container' -->
+    <div class="image-container">
+        <img src="https://github.com/YehudaRothstein/ExcaliburFRC/blob/GUI-Branch/templates/img/AMP.png?raw=true" alt="img//AMP.png">
+        <img src="https://github.com/YehudaRothstein/ExcaliburFRC/blob/GUI-Branch/templates/img/speaker.png?raw=true" alt="img//speaker.png">
+    </div>
 
 </form>
 
