@@ -3,23 +3,53 @@
 {% block content %}
 
 <style>
-    body {
-        margin: 20px; /* Adjust the value as needed */
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    h6, p, input, select, button {
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+        box-sizing: border-box; /* Ensure padding and border are included in the width */
+    }
+
+    select {
+        max-width: calc(100% - 40px);
+    }
+
+    button {
+        margin-top: 20px;
     }
 </style>
 
+<head>
+    <link rel="stylesheet" href="base.css">
+</head>
+
 <form action="{{ url_for('Autonomus') }}" method="post">
 
-    <br>
+    <p>Your name:</p>
+    <input type="text" name="scouter_name">
 
     <p>Qual Number:</p>
-    <p><input type="text" name="qual_number"></p>
+    <input type="text" name="qual_number">
 
     <p>Team:</p>
-    <p><input type="text" name="team"></p>
+    <input type="text" name="team">
+
+    <h6>Select Alliance:</h6>
+    <select name="Alliances Options" id="alliance-select">
+        <option value="">Please choose an alliance</option>
+        <option value="Blue">Blue</option>
+        <option value="Red">Red</option>
+    </select>
 
     <!-- Button with "Next" text -->
-    <p><button type="submit" name="submit_button">Next</button></p>
+    <button type="submit" name="submit_button">Next</button>
 
 </form>
 
