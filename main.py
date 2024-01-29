@@ -7,13 +7,6 @@ from pip._internal.utils import datetime
 
 app = Flask(__name__)
 
-JSON_FILE_PATH = "form_data.json"
-
-
-def update_json_file(data):
-    with open("C:\\Users\\excal\\PycharmProjects\\ExcaliburFRC\\Scout\\Data.JSON", 'w') as json_file:
-        json.dump(data, json_file)
-
 
 @app.route("/<name>")
 def home_with_name(name):
@@ -39,10 +32,23 @@ def ReportBug():
 def user(usr):
     return f"<h1>{usr}</h1>"
 
-
+global session
 @app.route("/Scout", methods=["POST", "GET"])
 def Scout():
+    if request.method == 'POST':
+        session['scout_data'] = request.form.to_dict()
+        return redirect(url_for('Autonomus'))
     return render_template("Scout.html")
+
+@app.route("/process_form", methods=["POST"])
+def process_form():
+    autonomus_data = request.form.to_dict()
+
+    # Write to JSON file
+    with open("Data.JSON", "w") as file:
+        json.dump(autonomus_data, file)
+
+    return "Data saved successfully"
 
 
 @app.route("/Autonomus", methods=["POST", "GET"])
@@ -50,30 +56,7 @@ def Autonomus():
     return render_template("autonomous.html")
 
 
-@app.route("/process_form", methods=["POST"])
-def process_form():
-    amp_value = int(request.form.get("amp_value"))
-    speaker_value = int(request.form.get("speaker_value"))
-    qual_number = request.form.get("qual_number")
-    team = request.form.get("team")
-
-    data = {
-        "amp_value": amp_value,
-        "speaker_value": speaker_value,
-        "qual_number": qual_number,
-        "team": team
-    }
-
-    # Generate a filename based on the current date and time
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    json_filename = f"Data_{timestamp}.json"
-    json_filepath = os.path.join("C:\\Users\\excal\\PycharmProjects\\ExcaliburFRC\\Scout\\Data.JSON")
-
-    # Save data to the JSON file
-    update_json_file(data, json_filepath)
-
-    return redirect(url_for('Autonomus'))
-
-
 if __name__ == '__main__':
     app.run()
+    app.secret_key = 'your_secret_key_here'
+
