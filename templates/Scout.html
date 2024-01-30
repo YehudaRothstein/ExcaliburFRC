@@ -2,20 +2,14 @@
 {% block title %}Scout{% endblock %}
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="templates">
+<link rel="stylesheet" type="text/css" href="C:\Users\PC -23\PycharmProjects\ExcaliburFRC\templates">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
 <style>
     body {
   background-color: #012265;
     }
 
-    label {
-        display: block;
-        margin-bottom: 10px;
-        color: #d3af37;
-    }
     form {
         display: flex;
         flex-direction: column;
@@ -51,7 +45,6 @@
         margin-top: 10px; /* Adjusted margin for the plus button */
     }
 
-
     /* Added styling for image container */
     .image-container {
         display: flex;
@@ -72,7 +65,7 @@
         align-items: center; /* Align items horizontally */
     }
 
-    /* Media query for screens with a maximum width of 600px (adjust` as needed) */
+    /* Media query for screens with a maximum width of 600px (adjust as needed) */
     @media (max-width: 600px) {
         .image-container {
             flex-direction: row; /* Align images side by side on larger screens */
@@ -84,13 +77,12 @@
         }
     }
 </style>
-<script src="../static/js/base.js"></script>
+
 <head>
     <link rel="stylesheet" href="base.css">
 </head>
 
-<form action="{{ url_for('Autonomus') }}" method="post" onsubmit="return false;">
-
+<form id="scoutForm" action="http://192.168.1.110:5000/process_form" method="post" onsubmit="return submitForm()">
     <p>Your name:</p>
     <input type="text" name="scouter_name">
 
@@ -107,21 +99,34 @@
         <option value="Red">Red</option>
     </select>
 
-    <br><br>
+    <script>
+    function updateCounter(change, counterId, category) {
+        let counterValue = parseInt(document.getElementById(counterId).value);
+        counterValue = Math.max(0, counterValue + change);
+        document.getElementById(counterId).value = counterValue;
+        let totalCounterId = 'totalCounter' + category;
+        let totalCounterValue = parseInt(document.getElementById(totalCounterId).value);
+        totalCounterValue = Math.max(0, totalCounterValue + change);
+        document.getElementById(totalCounterId).value = totalCounterValue;
+    }
+    </script>
+
+    <br>
+    <br>
     <h2>Autonomous</h2>
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter1', 'Autonomous')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter1', 'Autonomous')">-</button>
         <input type="text" id="counter1" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter1', 'Autonomous')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter1', 'Autonomous')">+</button>
     </div>
 
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter2', 'Autonomous')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter2', 'Autonomous')">-</button>
         <input type="text" id="counter2" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter2', 'Autonomous')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter2', 'Autonomous')">+</button>
     </div>
 
     <div class="checkbox-container">
@@ -134,16 +139,16 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter3', 'Teleop')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
         <input type="text" id="counter3" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter3', 'Teleop')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
     </div>
 
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter4', 'Teleop')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
         <input type="text" id="counter4" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter4', 'Teleop')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
     </div>
 
     <div class="checkbox-container">
@@ -160,37 +165,82 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter5', 'EndGame')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter5', 'EndGame')">+</button>
         <input type="text" id="counter5" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter5', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter5', 'EndGame')">+</button>
     </div>
 
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter6', 'EndGame')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'EndGame')">+</button>
         <input type="text" id="counter6" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter6', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'EndGame')">+</button>
     </div>
 
     <h6>Trap:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter7', 'EndGame')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
         <input type="text" id="counter7" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter7', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
     </div>
 
     <div class="checkbox-container">
         <input type="checkbox" id="vehicle5" name="Another checkbox" value="Another checkbox">
-        <label for="vehicle2">Climbed</label>
+        <label for="vehicle2">Climb</label>
     </div>
 
     <div class="checkbox-container">
         <input type="checkbox" id="vehicle6" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Climbed with another robot</label>
     </div>
+
+<script>
+function submitForm() {
+    event.preventDefault();
+    var data = {
+        'scouter_name': document.querySelector('input[name="scouter_name"]').value,
+        'qual_number': document.querySelector('input[name="qual_number"]').value,
+        'team': document.querySelector('input[name="team"]').value,
+        'Alliances Options': document.querySelector('select[name="Alliances Options"]').value,
+        'Auto AMP': document.getElementById('counter1').value,
+        'Auto Speaker': document.getElementById('counter2').value,
+        'Teleop AMP': document.getElementById('counter3').value,
+        'Teleop Speaker': document.getElementById('counter4').value,
+        'EndGame AMP': document.getElementById('counter5').value,
+        'EndGame Speaker': document.getElementById('counter6').value,
+        'EndGame Trap': document.getElementById('counter7').value
+    };
+
+    // Convert the JavaScript object to a JSON string
+    var jsonData = JSON.stringify(data);
+
+    // Create a new XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Configure the request
+    xhr.open('POST', '/Scout', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            alert('Data saved successfully');
+        } else {
+            console.error('An error occurred:', xhr.status, xhr.responseText);
+            alert('An error occurred!');
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error('An error occurred:', xhr.status, xhr.responseText);
+        alert('An error occurred: ' + xhr.responseText);  // Display more details in the alert
+    };
+
+    // Send the JSON data
+    xhr.send(jsonData);
+}
+</script>
+    <button type="submit" id="submitButton">Submit</button>
 </form>
-
-<button type="button">Submit</button>
-
 
 {% endblock %}
