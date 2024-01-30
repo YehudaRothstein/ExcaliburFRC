@@ -82,7 +82,7 @@
     <link rel="stylesheet" href="base.css">
 </head>
 
-<form id="scoutForm" action="http://192.168.1.110:5000/process_form" method="post" onsubmit="return submitForm()">
+<form id="scoutForm" action="http://192.168.1.103:5000/process_form" method="post" onsubmit="return submitForm()">
 
     <p>Your name:</p>
     <input type="text" name="scouter_name">
@@ -198,7 +198,11 @@
 
 <script>
 function submitForm() {
-    // ... existing code ...
+    // Get the form
+    var form = document.getElementById('scoutForm');
+
+    // Create a new FormData object from the form
+    var formData = new FormData(form);
 
     // Create a new XMLHttpRequest
     var xhr = new XMLHttpRequest();
@@ -222,6 +226,9 @@ function submitForm() {
 
     // Send the FormData
     xhr.send(formData);
+
+    // Prevent the form from being submitted normally
+    return false;
 }
 </script>
 
