@@ -82,8 +82,7 @@
     <link rel="stylesheet" href="base.css">
 </head>
 
-
-<form id="scoutForm" action="http://192.168.1.103:5000/process_form" method="post" onsubmit="return submitForm()">
+<form id="scoutForm" action="http://192.168.1.110:5000/process_form" method="post" onsubmit="return submitForm()">
 
     <p>Your name:</p>
     <input type="text" name="scouter_name">
@@ -199,35 +198,15 @@
 
 <script>
 function submitForm() {
-    var form = document.getElementById('scoutForm');
-    var formData = new FormData(form);
-    var ampAutonomous = document.getElementById('counter1').value;
-    var ampTeleop = document.getElementById('counter3').value;
-    var ampEndGame = document.getElementById('counter5').value;
-    var speakerAutonomous = document.getElementById('counter2').value;
-    var speakerTeleop = document.getElementById('counter4').value;
-    var speakerEndGame = document.getElementById('counter6').value;
-    var buttonLeavingArea = document.getElementById('vehicle2').checked;
-    var buttonClickCooperation = document.getElementById('vehicle3').checked;
-    var buttonCooperationPoint = document.getElementById('vehicle4').checked;
-    var buttonClimb = document.getElementById('vehicle5').checked;
-    var buttonClimbedWithAnotherRobot = document.getElementById('vehicle6').checked;
+    // ... existing code ...
 
-    formData.append('ampAutonomous', ampAutonomous);
-    formData.append('ampTeleop', ampTeleop);
-    formData.append('ampEndGame', ampEndGame);
-    formData.append('speakerAutonomous', speakerAutonomous);
-    formData.append('speakerTeleop', speakerTeleop);
-    formData.append('speakerEndGame', speakerEndGame);
-    formData.append('buttonLeavingArea', buttonLeavingArea);
-    formData.append('buttonClickCooperation', buttonClickCooperation);
-    formData.append('buttonCooperationPoint', buttonCooperationPoint);
-    formData.append('buttonClimb', buttonClimb);
-    formData.append('buttonClimbedWithAnotherRobot', buttonClimbedWithAnotherRobot);
-
+    // Create a new XMLHttpRequest
     var xhr = new XMLHttpRequest();
+
+    // Configure the request
     xhr.open('POST', '/Scout', true);
 
+    // Set up a handler for when the request finishes
     xhr.onload = function () {
         if (xhr.status === 200) {
             alert('Data saved successfully');
@@ -235,11 +214,14 @@ function submitForm() {
             alert('An error occurred!');
         }
     };
+
+    // Set up a handler for when the request errors
     xhr.onerror = function () {
         console.error('An error occurred:', xhr.responseText);
     };
+
+    // Send the FormData
     xhr.send(formData);
-    return false;
 }
 </script>
 
