@@ -18,18 +18,20 @@ def scout():
         data = request.form.to_dict()
 
         # Load existing data from the JSON file
-        existing_data = {}
+        existing_data = []
         json_file_path = "static/Data.json"
         if os.path.exists(json_file_path):
             with open(json_file_path, "r") as file:
                 existing_data = json.load(file)
 
-        # Update existing data with the new form data
-        existing_data.update(data)
+        # Append new form data to the existing data
+        existing_data.append(data)
 
         # Write the updated data back to the JSON file
         with open(json_file_path, "w") as file:
             json.dump(existing_data, file)
+
+        return "Data saved successfully"
 
     return render_template("Scout.html")
 

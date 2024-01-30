@@ -119,16 +119,16 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter1', 'Autonomous')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter1', 'Autonomous')">-</button>
         <input type="text" id="counter1" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter1', 'Autonomous')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter1', 'Autonomous')">+</button>
     </div>
 
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter2', 'Autonomous')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter2', 'Autonomous')">-</button>
         <input type="text" id="counter2" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter2', 'Autonomous')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter2', 'Autonomous')">+</button>
     </div>
 
     <div class="checkbox-container">
@@ -141,16 +141,16 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter3', 'Teleop')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
         <input type="text" id="counter3" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter3', 'Teleop')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
     </div>
 
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter4', 'Teleop')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
         <input type="text" id="counter4" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter4', 'Teleop')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
     </div>
 
     <div class="checkbox-container">
@@ -167,23 +167,23 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter5', 'EndGame')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter5', 'EndGame')">+</button>
         <input type="text" id="counter5" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter5', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter5', 'EndGame')">+</button>
     </div>
 
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter6', 'EndGame')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'EndGame')">+</button>
         <input type="text" id="counter6" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter6', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'EndGame')">+</button>
     </div>
 
     <h6>Trap:</h6>
     <div class="button-set">
-        <button onclick="updateCounter(-1, 'counter7', 'EndGame')">-</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
         <input type="text" id="counter7" value="0" readonly>
-        <button onclick="updateCounter(1, 'counter7', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
     </div>
 
     <div class="checkbox-container">
@@ -196,11 +196,34 @@
         <label for="vehicle2">Climbed with another robot</label>
     </div>
 
-    <script>
-        function submitForm() {
-        document.getElementById('scoutForm').submit();
-    }
-    </script>
+<script>
+function submitForm() {
+    // ... existing code ...
+
+    // Create a new XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Configure the request
+    xhr.open('POST', '/Scout', true);
+
+    // Set up a handler for when the request finishes
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            alert('Data saved successfully');
+        } else {
+            alert('An error occurred!');
+        }
+    };
+
+    // Set up a handler for when the request errors
+    xhr.onerror = function () {
+        console.error('An error occurred:', xhr.responseText);
+    };
+
+    // Send the FormData
+    xhr.send(formData);
+}
+</script>
 
     <button type="submit" id="submitButton" onclick="return submitForm()">Submit</button>
 </form>
