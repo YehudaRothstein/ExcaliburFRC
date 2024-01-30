@@ -14,9 +14,8 @@ def home():
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
     if request.method == 'POST':
-        data = request.json  # Use request.json to parse JSON data
+        data = request.json
 
-        # Load existing data from the JSON file
         existing_data = []
         json_file_path = "static/Data.json"
         if os.path.exists(json_file_path):

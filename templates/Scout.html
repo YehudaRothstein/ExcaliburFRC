@@ -1,81 +1,53 @@
 {% extends "base.html" %}
 {% block title %}Scout{% endblock %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Scout.css') }}">
 
 <link rel="stylesheet" type="text/css" href="C:\Users\PC -23\PycharmProjects\ExcaliburFRC\templates">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
     body {
-  background-color: #012265;
+      text-align: center;
+      background-color: #012265;
     }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 20px;
-    }
-
-    h6, p, h2{
-        font-weight: normal;
+    p, h2, button, input, label, h6  {
         color: #d3af37;
-        width: 100%;
-        margin-bottom: 10px;
-        text-align: center;
-        box-sizing: border-box;
     }
-
-    input, select, button {
+    input[name="scouter_name"], input[name="qual_number"], input[name="team"], select {
         background-color: #d3af37;
-        width: 100%;
-        margin-bottom: 10px;
+        color: #012265;
+    }
+    input[id="counter2"], input[id="counter1"], input[id="counter7"] , input[id="counter3"], input[id="counter4"], input[id="counter5"], input[id="counter6"] {
+        background-color: #012265;
+        color: #d3af37;
+        border: none;
+    }
+
+    .button-set {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 150px;  /* Set the maximum width for the button set */
+        margin: 0 auto;    /* Center the button set */
+    }
+
+    .button-set button, button {
+        width: 100px;  /* Adjust the width of the +/- buttons */
+        height: 30px;
+        font-size: 16px;  /* Adjust the font size of the buttons */
+        background-color: #d3af37;
+        color: #012265;
+        border: none;
+    }
+
+    .button-set input {
+        width: 40px;  /* Adjust the width of the counter input */
+        height: 30px;
         text-align: center;
-        box-sizing: border-box; /* Ensure padding and border are included in the width */
+        font-size: 16px;  /* Adjust the font size of the counter input */
     }
 
-    select {
-            font-weight: normal;
-          background-color: #d3af37;
-        max-width: 100%; /* Remove calc for smaller screens */
-    }
-
-    button {
-          background-color: #d3af37;
-        margin-top: 10px; /* Adjusted margin for the plus button */
-    }
-
-    /* Added styling for image container */
-    .image-container {
-        display: flex;
-        flex-direction: column; /* Stack images on top of each other on smaller screens */
-        align-items: center; /* Center images on smaller screens */
-    }
-
-    /* Added styling for images */
-    img {
-        width: 100%; /* Adjust as needed */
-        height: auto;
-        margin-bottom: 10px; /* Add space between images on smaller screens */
-    }
-
-    /* Added styling for checkbox */
-    .checkbox-container {
-        display: flex;
-        align-items: center; /* Align items horizontally */
-    }
-
-    /* Media query for screens with a maximum width of 600px (adjust as needed) */
-    @media (max-width: 600px) {
-        .image-container {
-            flex-direction: row; /* Align images side by side on larger screens */
-        }
-
-        img {
-            width: 45%; /* Reset width for larger screens */
-            margin-bottom: 0; /* Reset margin for larger screens */
-        }
-    }
 </style>
 
 <head>
@@ -92,7 +64,7 @@
     <p>Team:</p>
     <input type="text" name="team">
 
-    <h6>Select Alliance:</h6>
+    <p>Select Alliance:</p>
     <select name="Alliances Options" id="alliance-select">
         <option value="">Please choose an alliance</option>
         <option value="Blue">Blue</option>
@@ -121,18 +93,20 @@
         <input type="text" id="counter1" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter1', 'Autonomous')">+</button>
     </div>
-
+        <br>
     <h6>Speaker:</h6>
     <div class="button-set">
         <button onclick="event.preventDefault(); updateCounter(-1, 'counter2', 'Autonomous')">-</button>
         <input type="text" id="counter2" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter2', 'Autonomous')">+</button>
     </div>
+        <br>
 
     <div class="checkbox-container">
         <input type="checkbox" id="vehicle2" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Leaving the area</label>
     </div>
+        <br>
 
 
     <h2>Teleop</h2>
@@ -143,14 +117,14 @@
         <input type="text" id="counter3" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
     </div>
-
+    <br>
     <h6>Speaker:</h6>
     <div class="button-set">
         <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
         <input type="text" id="counter4" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
     </div>
-
+    <br>
     <div class="checkbox-container">
         <input type="checkbox" id="vehicle3" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Click Cooperation</label>
@@ -160,6 +134,7 @@
         <input type="checkbox" id="vehicle4" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Cooperation point</label>
     </div>
+        <br>
 
     <h2>EndGame</h2>
 
@@ -183,6 +158,7 @@
         <input type="text" id="counter7" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
     </div>
+        <br>
 
     <div class="checkbox-container">
         <input type="checkbox" id="vehicle5" name="Another checkbox" value="Another checkbox">
@@ -240,6 +216,7 @@ function submitForm() {
     xhr.send(jsonData);
 }
 </script>
+            <br>
     <button type="submit" id="submitButton">Submit</button>
 </form>
 
