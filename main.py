@@ -4,7 +4,6 @@ import json
 
 app = Flask(__name__)
 
-app = Flask(__name__)
 session = {}
 
 @app.route("/")
@@ -15,7 +14,7 @@ def home():
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
     if request.method == 'POST':
-        data = request.form.to_dict()
+        data = request.json  # Use request.json to parse JSON data
 
         # Load existing data from the JSON file
         existing_data = []

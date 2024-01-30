@@ -83,7 +83,6 @@
 </head>
 
 <form id="scoutForm" action="http://192.168.1.110:5000/process_form" method="post" onsubmit="return submitForm()">
-
     <p>Your name:</p>
     <input type="text" name="scouter_name">
 
@@ -105,7 +104,6 @@
         let counterValue = parseInt(document.getElementById(counterId).value);
         counterValue = Math.max(0, counterValue + change);
         document.getElementById(counterId).value = counterValue;
-
         let totalCounterId = 'totalCounter' + category;
         let totalCounterValue = parseInt(document.getElementById(totalCounterId).value);
         totalCounterValue = Math.max(0, totalCounterValue + change);
@@ -198,34 +196,51 @@
 
 <script>
 function submitForm() {
-    // ... existing code ...
+    event.preventDefault();
+    var data = {
+        'scouter_name': document.querySelector('input[name="scouter_name"]').value,
+        'qual_number': document.querySelector('input[name="qual_number"]').value,
+        'team': document.querySelector('input[name="team"]').value,
+        'Alliances Options': document.querySelector('select[name="Alliances Options"]').value,
+        'Auto AMP': document.getElementById('counter1').value,
+        'Auto Speaker': document.getElementById('counter2').value,
+        'Teleop AMP': document.getElementById('counter3').value,
+        'Teleop Speaker': document.getElementById('counter4').value,
+        'EndGame AMP': document.getElementById('counter5').value,
+        'EndGame Speaker': document.getElementById('counter6').value,
+        'EndGame Trap': document.getElementById('counter7').value
+    };
+
+    // Convert the JavaScript object to a JSON string
+    var jsonData = JSON.stringify(data);
 
     // Create a new XMLHttpRequest
     var xhr = new XMLHttpRequest();
 
     // Configure the request
     xhr.open('POST', '/Scout', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
 
-    // Set up a handler for when the request finishes
+
     xhr.onload = function () {
         if (xhr.status === 200) {
             alert('Data saved successfully');
         } else {
+            console.error('An error occurred:', xhr.status, xhr.responseText);
             alert('An error occurred!');
         }
     };
 
-    // Set up a handler for when the request errors
     xhr.onerror = function () {
-        console.error('An error occurred:', xhr.responseText);
+        console.error('An error occurred:', xhr.status, xhr.responseText);
+        alert('An error occurred: ' + xhr.responseText);  // Display more details in the alert
     };
 
-    // Send the FormData
-    xhr.send(formData);
+    // Send the JSON data
+    xhr.send(jsonData);
 }
 </script>
-
-    <button type="submit" id="submitButton" onclick="return submitForm()">Submit</button>
+    <button type="submit" id="submitButton">Submit</button>
 </form>
 
 {% endblock %}
