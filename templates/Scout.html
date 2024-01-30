@@ -82,7 +82,7 @@
     <link rel="stylesheet" href="base.css">
 </head>
 
-<form action="{{ url_for('Autonomus') }}" method="post" onsubmit="return false;">
+<form id="scoutForm" action="http://192.168.1.110:5000/process_form" method="post" onsubmit="return submitForm()">
 
     <p>Your name:</p>
     <input type="text" name="scouter_name">
@@ -106,7 +106,6 @@
         counterValue = Math.max(0, counterValue + change);
         document.getElementById(counterId).value = counterValue;
 
-        // Update the total counters for each category
         let totalCounterId = 'totalCounter' + category;
         let totalCounterValue = parseInt(document.getElementById(totalCounterId).value);
         totalCounterValue = Math.max(0, totalCounterValue + change);
@@ -196,9 +195,14 @@
         <input type="checkbox" id="vehicle6" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Climbed with another robot</label>
     </div>
+
+    <script>
+        function submitForm() {
+        document.getElementById('scoutForm').submit();
+    }
+    </script>
+
+    <button type="submit" id="submitButton" onclick="return submitForm()">Submit</button>
 </form>
-
-<button type="button">Submit</button>
-
 
 {% endblock %}
