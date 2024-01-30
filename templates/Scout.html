@@ -82,8 +82,7 @@
     <link rel="stylesheet" href="base.css">
 </head>
 
-<form id="scoutForm" action="http://192.168.1.110:5000/process_form" method="post" onsubmit="return submitForm()">
-
+<form id="scoutForm" action="/Scout" method="post" onsubmit="return submitForm()">
     <p>Your name:</p>
     <input type="text" name="scouter_name">
 
@@ -197,14 +196,27 @@
     </div>
 
 <script>
-function submitForm() {
-    // ... existing code ...
+    var validTeams = [1574, 1576, 1577, 1580,
+                     1690, 1942, 2230, 2630,
+                     2679, 3065, 3083, 3211,
+                     3316, 3339, 4319, 4320,
+                     4338, 5135, 5654, 5715,
+                     5990, 6230, 6738, 6740,
+                     6741, 7067, 7177, 8175,
+                     9303, 9738, 9740, 9741];
 
-    // Create a new XMLHttpRequest
+function submitForm() {
+
+    var teamNumber = document.getElementsByName('team')[0].value;
+
+        if (!validTeams.includes(parseInt(teamNumber))) {
+            alert('The team number is not valid.');
+            return false;
+        }
     var xhr = new XMLHttpRequest();
 
     // Configure the request
-    xhr.open('POST', '/Scout', true);
+    xhr.open('POST', 'http://192.168.1.110:5000/process_form', true);
 
     // Set up a handler for when the request finishes
     xhr.onload = function () {
