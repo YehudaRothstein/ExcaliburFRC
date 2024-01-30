@@ -2,7 +2,7 @@
 {% block title %}Scout{% endblock %}
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="C:\Users\PC -23\PycharmProjects\ExcaliburFRC\templates">
+<link rel="stylesheet" type="text/css" href="templates">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,6 +10,11 @@
   background-color: #012265;
     }
 
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #d3af37;
+    }
     form {
         display: flex;
         flex-direction: column;
@@ -45,6 +50,7 @@
         margin-top: 10px; /* Adjusted margin for the plus button */
     }
 
+
     /* Added styling for image container */
     .image-container {
         display: flex;
@@ -65,7 +71,7 @@
         align-items: center; /* Align items horizontally */
     }
 
-    /* Media query for screens with a maximum width of 600px (adjust as needed) */
+    /* Media query for screens with a maximum width of 600px (adjust` as needed) */
     @media (max-width: 600px) {
         .image-container {
             flex-direction: row; /* Align images side by side on larger screens */
@@ -189,7 +195,7 @@
 
     <div class="checkbox-container">
         <input type="checkbox" id="vehicle5" name="Another checkbox" value="Another checkbox">
-        <label for="vehicle2">Climb</label>
+        <label for="vehicle2">Climbed</label>
     </div>
 
     <div class="checkbox-container">

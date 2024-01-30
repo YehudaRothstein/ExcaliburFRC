@@ -1,4 +1,4 @@
-import os
+import os, socket
 
 from flask import Flask, render_template, redirect, url_for, request, jsonify, send_from_directory
 import json
@@ -7,31 +7,9 @@ from pip._internal.utils import datetime
 
 app = Flask(__name__)
 session = {}
+socket.getaddrinfo('localhost', 5000)
 
-@app.route("/<name>")
-def home_with_name(name):
-    return render_template("index.html")
-
-
-@app.route("/home")
-def test():
-    return render_template("new.html")
-
-
-@app.route("/test_new")
-def test_new():
-    return render_template("new.html")
-
-
-@app.route("/ReportBugs", methods=["POST", "GET"])
-def ReportBug():
-    return render_template("Report.html")
-
-
-@app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>"
-
+LOCAL_IP = socket.gethostbyname(socket.gethostname())
 
 @app.route("/Scout", methods=["POST", "GET"])
 def Scout():
@@ -41,8 +19,32 @@ def Scout():
         with open("static/Data.json", "w") as file:
             json.dump(scout_data, file)
 
+    return render_template("Scout.html", local_ip=LOCAL_IP)
+@app.route("/<name>")
+def home_with_name(name):
+    return render_template("index.html", local_ip=LOCAL_IP)
 
-    return render_template("Scout.html")
+
+@app.route("/home")
+def test():
+    return render_template("new.html", local_ip=LOCAL_IP)
+
+
+@app.route("/test_new")
+def test_new():
+    return render_template("new.html", local_ip=LOCAL_IP)
+
+
+@app.route("/ReportBugs", methods=["POST", "GET"])
+def ReportBug():
+  return render_template("Report.html", local_ip=LOCAL_IP)
+
+
+@app.route("/<usr>")
+def user(usr):
+    return f"<h1>{usr}</h1>"
+
+
 
 @app.route("/process_form", methods=["POST"])
 def process_form():
@@ -57,13 +59,13 @@ def process_form():
 
 @app.route("/Autonomous", methods=["POST", "GET"])
 def Autonomus():
-    return render_template("autonomous.html")
+    return render_template("autonomous.html", local_ip=LOCAL_IP)
 
 @app.route('/get-json')
 def get_json():
     return send_from_directory('static', 'Data.json')
 
 if __name__ == '__main__':
-    app.run(host="10.97.227.83", port=5000, debug=True)
+    app.run(host=LOCAL_IP, port=5000, debug=True)
     app.secret_key = 'your_secret_key_here'
 
