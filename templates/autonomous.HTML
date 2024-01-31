@@ -4,7 +4,7 @@
 
 <form action="/process_form" method="post">
 <br>
-
+<script src="../static/js/base.js"></script>
     <h3>AMP:</h3>
     <p>
         <button type="button" onclick="changeValue('amp_value', 1)">+</button>
@@ -25,16 +25,6 @@
     <!-- Hidden input field to store the current value for the second counter -->
     <input type="hidden" name="speaker_value" id="hidden_speaker" value="0">
 
-    <script>
-        function changeValue(elementId, amount) {
-            var currentValue = parseInt(document.getElementById(elementId).innerText);
-            var newValue = currentValue + amount;
-
-            document.getElementById(elementId).innerText = newValue;
-
-            document.getElementById("hidden_" + elementId).value = newValue;
-        }
-    </script>
 
     <p><button type="submit" name="submit_button">Submit</button></p>
 
