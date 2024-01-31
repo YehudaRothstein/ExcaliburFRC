@@ -1,0 +1,62 @@
+{% extends "base.html"%}
+{% block content %}Login
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+      text-align: center;
+      background-color: #012265;
+    }
+    p, h2, button, input, label, h6  {
+        color: #d3af37;
+    }
+    input[name="scouter_name"], input[name="qual_number"], input[name="team"], select {
+        background-color: #d3af37;
+        color: #012265;
+    }
+    input[id="counter2"], input[id="counter1"], input[id="counter7"] , input[id="counter3"], input[id="counter4"], input[id="counter5"], input[id="counter6"] {
+        background-color: #012265;
+        color: #d3af37;
+        border: none;
+    }
+
+    .button-set {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 150px;  /* Set the maximum width for the button set */
+        margin: 0 auto;    /* Center the button set */
+    }
+
+    .button-set button, button {
+        width: 100px;  /* Adjust the width of the +/- buttons */
+        height: 30px;
+        font-size: 16px;  /* Adjust the font size of the buttons */
+        background-color: #d3af37;
+        color: #012265;
+        border: none;
+    }
+
+    .button-set input {
+        width: 40px;  /* Adjust the width of the counter input */
+        height: 30px;
+        text-align: center;
+        font-size: 16px;  /* Adjust the font size of the counter input */
+    }
+
+</style>
+
+<p>Username:</p>
+<label>
+    <input type="text" name="team">
+</label>
+<p>Password:</p>
+<label>
+    <input type="text" name="team">
+</label>
+    <br>
+    <br>
+<button type="button">Submit</button>
+
+{% endblock %}
