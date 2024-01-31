@@ -85,6 +85,6 @@ def get_json():
 
 
 if __name__ == '__main__':
-    app.run(host=LOCAL_IP, port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
     app.secret_key = 'your_secret_key_here'
 
