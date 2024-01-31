@@ -6,15 +6,17 @@ import json
 from pip._internal.utils import datetime
 
 app = Flask(__name__)
-session ={}
+session = {}
 session = {}
 socket.getaddrinfo('localhost', 5000)
 
 LOCAL_IP = '192.168.1.103'
 
+
 @app.route("/")
 def home():
     return render_template("index.html")
+
 
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
@@ -45,17 +47,24 @@ def scout():
     except Exception as e:
         print(f"An error occurred: {e}")
     return render_template("Scout.html")
+
+
 @app.route('/get-json-data')
 def get_json_data():
     return send_from_directory('static', 'Data.json')
+
 
 @app.route("/process_form", methods=["POST"])
 def process_form():
     return "Form processed successfully"
 
-@app.route("/home")
+@app.route("/Login")
+def login():
+    return render_template("Login.html", local_ip="0.0.0.0")
+
 def test():
     return render_template("new.html", local_ip=LOCAL_IP)
+
 
 
 @app.route("/test_new")
@@ -65,11 +74,14 @@ def test_new():
 
 @app.route("/ReportBugs", methods=["POST", "GET"])
 def ReportBug():
-  return render_template("Report.html", local_ip=LOCAL_IP)
+    return render_template("Report.html", local_ip=LOCAL_IP)
+
 
 @app.route('/static/<path:path>')
 def send_js(path):
     return send_from_directory('static', path)
+
+
 @app.route("/<usr>")
 def user(usr):
     return f"<h1>{usr}</h1>"
@@ -79,12 +91,12 @@ def user(usr):
 def Autonomus():
     return render_template("autonomous.html", local_ip=LOCAL_IP)
 
+
 @app.route('/get-json')
 def get_json():
     return send_from_directory('static', 'Data.json')
 
 
 if __name__ == '__main__':
-    app.run(host=LOCAL_IP, port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
     app.secret_key = 'your_secret_key_here'
-
