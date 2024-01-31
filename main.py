@@ -11,11 +11,11 @@ LOCAL_IP = '192.168.1.103'
 
 @app.route("/")
 def home():
-    """
-    Route for the home page.
-    Returns the rendered template for the home page.
-    """
-    return render_template("index.html")
+    return render_template("new.html")
+
+@app.route("/Login")
+def home():
+    return render_template("new.html")
 
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
