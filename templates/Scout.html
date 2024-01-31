@@ -52,19 +52,27 @@
 
 <head>
     <link rel="stylesheet" href="base.css">
+    <title></title>
 </head>
 
 <form id="scoutForm" action="http://192.168.1.110:5000/process_form" method="post" onsubmit="return submitForm()">
     <p>Your name:</p>
-    <input type="text" name="scouter_name">
+    <label>
+        <input type="text" name="scouter_name">
+    </label>
 
     <p>Qual Number:</p>
-    <input type="text" name="qual_number">
+    <label>
+        <input type="text" name="qual_number">
+    </label>
 
     <p>Team:</p>
-    <input type="text" name="team">
+    <label>
+        <input type="text" name="team">
+    </label>
 
     <p>Select Alliance:</p>
+    <label for="alliance-select"></label>
     <select name="Alliances Options" id="alliance-select">
         <option value="">Please choose an alliance</option>
         <option value="Blue">Blue</option>
@@ -217,7 +225,10 @@ function submitForm() {
 }
 </script>
 
-
+<form action="/Scout" method="post">
+    <input type="text" name="team" placeholder="Enter team">
+    <input type="submit" value="Submit">
+</form>
             <br>
     <button type="submit" id="submitButton">Submit</button>
 </form>

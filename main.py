@@ -10,7 +10,7 @@ session ={}
 session = {}
 socket.getaddrinfo('localhost', 5000)
 
-LOCAL_IP = socket.gethostbyname(socket.gethostname())
+LOCAL_IP = '192.168.1.103'
 
 @app.route("/")
 def home():
@@ -18,29 +18,33 @@ def home():
 
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
-    if request.method == 'POST':
-        data = request.form.to_dict()
-        existing_data = {}
-        json_file_path = "static/Data.json"
-        if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
-            with open(json_file_path, "r") as file:
-                try:
-                    existing_data = json.load(file)
-                except json.JSONDecodeError:
-                    print("JSONDecodeError: The file is empty or not properly formatted")
+    try:
+        if request.method == 'POST':
+            data = request.get_json()  # Get the JSON data from the request
+            existing_data = {}
+            json_file_path = "static/Data.json"
+            if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
+                with open(json_file_path, "r") as file:
+                    try:
+                        existing_data = json.load(file)
+                    except json.JSONDecodeError:
+                        print("JSONDecodeError: The file is empty or not properly formatted")
 
-        key = data['team']
-        if key not in existing_data:
-            existing_data[key] = []
-        existing_data[key].append(data)
+            key = data['team']
+            if key not in existing_data:
+                existing_data[key] = []
+            existing_data[key].append(data)
 
-        with open(json_file_path, "w") as file:
-            json.dump(existing_data, file, indent=4)  # pretty-print the JSON data
+            try:
+                with open(json_file_path, "w") as file:
+                    json.dump(existing_data, file, indent=4)  # pretty-print the JSON data
+            except Exception as e:
+                print(f"An error occurred while writing to the file: {e}")
 
-        return "Data saved successfully"
-
+            return "Data saved successfully"
+    except Exception as e:
+        print(f"An error occurred: {e}")
     return render_template("Scout.html")
-
 @app.route('/get-json-data')
 def get_json_data():
     return send_from_directory('static', 'Data.json')
