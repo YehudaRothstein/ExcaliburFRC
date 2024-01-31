@@ -14,11 +14,16 @@
     p, h2, button, input, label, h6  {
         color: #d3af37;
     }
-    input[name="scouter_name"], input[name="qual_number"], input[name="team"], select {
+    input[id="submitButton"]{
+        background-color: #d3af37;
+        color: #012265;
+        border: none;
+    }
+    input[name="scouter_name"], input[name="submit"], input[name="team"], input[name="qual_number"], select {
         background-color: #d3af37;
         color: #012265;
     }
-    input[id="counter2"], input[id="counter1"], input[id="counter7"] , input[id="counter3"], input[id="counter4"], input[id="counter5"], input[id="counter6"] {
+    input[id="counter2"], input[id="counter1"],  input[id="counter7"] , input[id="counter3"], input[id="counter4"], input[id="counter5"], input[id="counter6"] {
         background-color: #012265;
         color: #d3af37;
         border: none;
@@ -28,24 +33,24 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        max-width: 150px;
-        margin: 0 auto;
+        max-width: 150px;  /* Set the maximum width for the button set */
+        margin: 0 auto;    /* Center the button set */
     }
 
     .button-set button, button {
-        width: 100px;
+        width: 100px;  /* Adjust the width of the +/- buttons */
         height: 30px;
-        font-size: 16px;
+        font-size: 16px;  /* Adjust the font size of the buttons */
         background-color: #d3af37;
         color: #012265;
         border: none;
     }
 
     .button-set input {
-        width: 40px;
+        width: 40px;  /* Adjust the width of the counter input */
         height: 30px;
         text-align: center;
-        font-size: 16px;
+        font-size: 16px;  /* Adjust the font size of the counter input */
     }
 
 </style>
@@ -82,6 +87,10 @@
     <script>
     function updateCounter(change, counterId, category) {
         let counterValue = parseInt(document.getElementById(counterId).value);
+        if (counterId === 'counter7' && counterValue >= 3 && change > 0) {
+            // If the counter is for "Trap" and it's already at 3, don't increment it
+            return;
+        }
         counterValue = Math.max(0, counterValue + change);
         document.getElementById(counterId).value = counterValue;
         let totalCounterId = 'totalCounter' + category;
@@ -121,14 +130,14 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter3', 'Teleop')">-</button>
         <input type="text" id="counter3" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
     </div>
     <br>
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter4', 'Teleop')">-</button>
         <input type="text" id="counter4" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
     </div>
@@ -148,21 +157,21 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(1, 'counter5', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter5', 'EndGame')">-</button>
         <input type="text" id="counter5" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter5', 'EndGame')">+</button>
     </div>
 
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter6', 'EndGame')">-</button>
         <input type="text" id="counter6" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'EndGame')">+</button>
     </div>
 
     <h6>Trap:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter7', 'EndGame')">-</button>
         <input type="text" id="counter7" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
     </div>
@@ -181,15 +190,6 @@
 <script>
 function submitForm() {
     event.preventDefault();
-     var validTeams = [1574, 1576, 1577, 1580,
-                     1690, 1942, 2230, 2630,
-                     2679, 3065, 3083, 3211,
-                     3316, 3339, 4319, 4320,
-                     4338, 5135, 5654, 5715,
-                     5990, 6230, 6738, 6740,
-                     6741, 7067, 7177, 8175,
-                     9303, 9738, 9740, 9741];
-
     var data = {
         'scouter_name': document.querySelector('input[name="scouter_name"]').value,
         'qual_number': document.querySelector('input[name="qual_number"]').value,
@@ -209,14 +209,11 @@ function submitForm() {
         'Climbed with another robot': document.getElementById('vehicle6').checked
     };
 
-var teamNumber = document.getElementsByName('team')[0].value;
 
-        if (!validTeams.includes(parseInt(teamNumber))) {
-            alert('The team number is not valid.');
-            return false;
-        }
 
     var jsonData = JSON.stringify(data);
+
+    // Create a new XMLHttpRequest
     var xhr = new XMLHttpRequest();
 
     // Configure the request
@@ -243,11 +240,9 @@ var teamNumber = document.getElementsByName('team')[0].value;
 </script>
 
 <form action="/Scout" method="post">
-    <input type="text" name="team" placeholder="Enter team">
-    <input type="submit" value="Submit">
+    <input type="submit" id="submitButton" value="Submit">
 </form>
             <br>
-    <button type="submit" id="submitButton">Submit</button>
 </form>
 
 {% endblock %}
