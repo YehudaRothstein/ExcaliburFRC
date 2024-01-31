@@ -1,12 +1,16 @@
-import os, json
-from flask import Flask, render_template, request, jsonify, send_from_directory
+
+import os, socket
+
+from flask import Flask, render_template, redirect, url_for, request, jsonify, send_from_directory
+import json
+
+from pip._internal.utils import datetime
 
 app = Flask(__name__)
-session ={}
+session = {}
+socket.getaddrinfo('localhost', 5000)
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+LOCAL_IP = socket.gethostbyname(socket.gethostname())
 
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
@@ -43,17 +47,44 @@ def process_form():
 
 @app.route("/home")
 def test():
-    return render_template("new.html")
+    return render_template("new.html", local_ip=LOCAL_IP)
 
 @app.route("/test_new")
 def test_new():
-    return render_template("new.html")
+    return render_template("new.html", local_ip=LOCAL_IP)
 
 @app.route("/ReportBugs", methods=["POST", "GET"])
 def ReportBug():
-    return render_template("Report.html")
+  return render_template("Report.html", local_ip=LOCAL_IP)
 
+
+
+@app.route("/<usr>")
+def user(usr):
+    return f"<h1>{usr}</h1>"
+
+
+
+@app.route("/process_form", methods=["POST"])
+def process_form():
+    autonomus_data = request.form.to_dict()
+
+    # Write to JSON file
+    with open("static/Data.JSON", "w") as file:
+        json.dump(autonomus_data, file)
+
+    return "Data saved successfully"
+
+
+@app.route("/Autonomous", methods=["POST", "GET"])
+def Autonomus():
+    return render_template("autonomous.html", local_ip=LOCAL_IP)
+
+@app.route('/get-json')
+def get_json():
+    return send_from_directory('static', 'Data.json')
 
 if __name__ == '__main__':
+    app.run(host=LOCAL_IP, port=5000, debug=True)
     app.secret_key = 'your_secret_key_here'
     app.run(host="192.168.1.103", port=5000, debug=True)
