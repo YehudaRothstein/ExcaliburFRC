@@ -1,17 +1,31 @@
-import os, socket
-from flask import Flask, render_template, redirect, url_for, request, jsonify, send_from_directory
-import json
-from pip._internal.utils import datetime
+import os, socket, json
+from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory
+from flask_sqlalchemy import SQLAlchemy
 
 # Initialize Flask application
 app = Flask(__name__)
-session ={}
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////path/to/your/usersdata.db'
+app.config['SECRET_KEY'] = '6738'
+db = SQLAlchemy(app)
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '192.168.1.103'
 
-
-@app.route("/Login")
-def home():
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+@app.route("/Login", methods=["POST", "GET"])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user is None:
+            flash('Username not found')
+            return render_template("Login.html")
+        else:
+            # Continue with your existing login process
+            pass
     return render_template("Login.html")
 
 @app.route("/Scout", methods=["POST", "GET"])
@@ -123,4 +137,4 @@ def get_json():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
-    app.secret_key = 'your_secret_key_here'
+    app.secret_key = '6738'
