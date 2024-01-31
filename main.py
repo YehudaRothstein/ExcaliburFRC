@@ -1,9 +1,10 @@
-import os, socket, json
+import os, socket, json, sqlite3
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory
 
 
 # Initialize Flask application
 app = Flask(__name__)
+app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '192.168.1.103'
 
@@ -13,16 +14,17 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = User.query.filter_by(username=username).first()
+        conn = sqlite3.connect('static/usersdata.db')
+        c = conn.cursor()
+        c.execute("SELECT * FROM name WHERE name=?", (username,))
+        user = c.fetchone()
+
         if user is None:
-            flash('Username not found')
-            return render_template("Login.html")
-        elif user.password != password:
-            flash('Incorrect password')
-            return render_template("Login.html")
+            return 'Username not found', 400  # Return an error status code
+        elif password != '6738':
+            return 'Incorrect password', 400  # Return an error status code
         else:
-            # Continue with your existing login process
-            pass
+            return 'Login successful'  # Return a success message
     return render_template("Login.html")
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
@@ -133,4 +135,3 @@ def get_json():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
-    app.secret_key = '6738'

@@ -11,16 +11,10 @@
     p, h2, button, input, label, h6  {
         color: #d3af37;
     }
-    input[name="scouter_name"], input[name="qual_number"], input[name="team"], select {
+    input[name="username"], input[name="password"] {
         background-color: #d3af37;
         color: #012265;
     }
-    input[id="counter2"], input[id="counter1"], input[id="counter7"] , input[id="counter3"], input[id="counter4"], input[id="counter5"], input[id="counter6"] {
-        background-color: #012265;
-        color: #d3af37;
-        border: none;
-    }
-
     .button-set {
         display: flex;
         align-items: center;
@@ -28,7 +22,6 @@
         max-width: 150px;  /* Set the maximum width for the button set */
         margin: 0 auto;    /* Center the button set */
     }
-
     .button-set button, button {
         width: 100px;  /* Adjust the width of the +/- buttons */
         height: 30px;
@@ -37,32 +30,61 @@
         color: #012265;
         border: none;
     }
-
-    .button-set input {
-        width: 40px;  /* Adjust the width of the counter input */
-        height: 30px;
-        text-align: center;
-        font-size: 16px;  /* Adjust the font size of the counter input */
+    .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+        margin-bottom: 15px;
     }
-
 </style>
 
-<p>Username:</p>
-<label>
-    <input type="text" name="team">
-</label>
-<p>Password:</p>
-<label>
-    <input type="text" name="team">
-</label>
+
+
+
+<form method="POST" action="{{ url_for('login') }}">
+    <p>Username:</p>
+    <label>
+        <input type="text" name="username">
+    </label>
+    <p>Password:</p>
+    <label>
+        <input type="password" name="password">
+    </label>
     <br>
     <br>
-<button type="button">Submit</button>
+    <button type="submit">Submit</button>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("form").on("submit", function(event) {
+        event.preventDefault();  // Prevent the form from submitting immediately
+        console.log("Sending AJAX request");
+        var form = this;
+
+        $.ajax({
+            url: $(form).attr("action"),
+            type: $(form).attr("method"),
+            data: $(form).serialize(),
+            success: function(response) {
+                if (response === "Login successful") {
+                    alert(response);
+                    window.location.href = "{{ url_for('scout') }}";
+                } else {
+                    alert("Not valid");
+                    form.reset();
+                }
+            }
+        });
+    });
+});
+</script>
+
 {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <div class="alert alert-warning">
-      {{ messages[0] }}
+{% if messages %}
+    <div class="alert alert-success">
+        {{ messages[0] }}
     </div>
-  {% endif %}
+{% endif %}
 {% endwith %}
 {% endblock %}
