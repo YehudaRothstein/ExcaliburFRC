@@ -107,14 +107,14 @@
     <h6>AMP:</h6>
     <div class="button-set">
         <button onclick="event.preventDefault(); updateCounter(-1, 'counter1', 'Autonomous')">-</button>
-        <input type="text" id="counter1" value="0" readonly>
+        <label for="counter1"></label><input type="text" id="counter1" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter1', 'Autonomous')">+</button>
     </div>
         <br>
     <h6>Speaker:</h6>
     <div class="button-set">
         <button onclick="event.preventDefault(); updateCounter(-1, 'counter2', 'Autonomous')">-</button>
-        <input type="text" id="counter2" value="0" readonly>
+        <label for="counter2"></label><input type="text" id="counter2" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter2', 'Autonomous')">+</button>
     </div>
         <br>
@@ -130,25 +130,25 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(-1, 'counter3', 'Teleop')">-</button>
-        <input type="text" id="counter3" value="0" readonly>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
+        <label for="counter3"></label><input type="text" id="counter3" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Teleop')">+</button>
     </div>
     <br>
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(-1, 'counter4', 'Teleop')">-</button>
-        <input type="text" id="counter4" value="0" readonly>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
+        <label for="counter4"></label><input type="text" id="counter4" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter4', 'Teleop')">+</button>
     </div>
     <br>
     <div class="checkbox-container">
-        <input type="checkbox" id="vehicle3" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle3"></label><input type="checkbox" id="vehicle3" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Click Cooperation</label>
     </div>
 
     <div class="checkbox-container">
-        <input type="checkbox" id="vehicle4" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle4"></label><input type="checkbox" id="vehicle4" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Cooperation point</label>
     </div>
         <br>
@@ -157,40 +157,49 @@
 
     <h6>AMP:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(-1, 'counter5', 'EndGame')">-</button>
-        <input type="text" id="counter5" value="0" readonly>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter5', 'EndGame')">+</button>
+        <label for="counter5"></label><input type="text" id="counter5" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter5', 'EndGame')">+</button>
     </div>
 
     <h6>Speaker:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(-1, 'counter6', 'EndGame')">-</button>
-        <input type="text" id="counter6" value="0" readonly>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'EndGame')">+</button>
+        <label for="counter6"></label><input type="text" id="counter6" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'EndGame')">+</button>
     </div>
 
     <h6>Trap:</h6>
     <div class="button-set">
-        <button onclick="event.preventDefault(); updateCounter(-1, 'counter7', 'EndGame')">-</button>
-        <input type="text" id="counter7" value="0" readonly>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
+        <label for="counter7"></label><input type="text" id="counter7" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter7', 'EndGame')">+</button>
     </div>
         <br>
 
     <div class="checkbox-container">
-        <input type="checkbox" id="vehicle5" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle5"></label><input type="checkbox" id="vehicle5" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Climb</label>
     </div>
 
     <div class="checkbox-container">
-        <input type="checkbox" id="vehicle6" name="Another checkbox" value="Another checkbox">
+        <label for="vehicle6"></label><input type="checkbox" id="vehicle6" name="Another checkbox" value="Another checkbox">
         <label for="vehicle2">Climbed with another robot</label>
     </div>
 
 <script>
 function submitForm() {
     event.preventDefault();
-    var data = {
+    const validTeams = [1574, 1576, 1577, 1580,
+        1690, 1942, 2230, 2630,
+        2679, 3065, 3083, 3211,
+        3316, 3339, 4319, 4320,
+        4338, 5135, 5654, 5715,
+        5990, 6230, 6738, 6740,
+        6741, 7067, 7177, 8175,
+        9303, 9738, 9740, 9741];
+
+    const data = {
         'scouter_name': document.querySelector('input[name="scouter_name"]').value,
         'qual_number': document.querySelector('input[name="qual_number"]').value,
         'team': document.querySelector('input[name="team"]').value,
@@ -209,12 +218,15 @@ function submitForm() {
         'Climbed with another robot': document.getElementById('vehicle6').checked
     };
 
+    const teamNumber = document.getElementsByName('team')[0].value;
 
+    if (!validTeams.includes(parseInt(teamNumber))) {
+            alert('The team number is not valid.');
+            return false;
+        }
 
-    var jsonData = JSON.stringify(data);
-
-    // Create a new XMLHttpRequest
-    var xhr = new XMLHttpRequest();
+    const jsonData = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
 
     // Configure the request
     xhr.open('POST', '/Scout', true);
@@ -240,9 +252,13 @@ function submitForm() {
 </script>
 
 <form action="/Scout" method="post">
-    <input type="submit" id="submitButton" value="Submit">
+    <label>
+        <input type="text" name="team" placeholder="Enter team">
+    </label>
+    <input type="submit" value="Submit">
 </form>
             <br>
+    <button type="submit" id="submitButton">Submit</button>
 </form>
 
 {% endblock %}
