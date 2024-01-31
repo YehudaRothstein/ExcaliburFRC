@@ -17,8 +17,8 @@ def home():
     return render_template("new.html")
 
 @app.route("/Login")
-def home():
-    return render_template("new.html")
+def login():
+    return render_template("Login.html")
 
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
@@ -71,9 +71,6 @@ def process_form():
     """
     return "Form processed successfully"
 
-@app.route("/Login")
-def login():
-    return render_template("Login.html", local_ip="0.0.0.0")
 
 def test():
     """
