@@ -181,6 +181,15 @@
 <script>
 function submitForm() {
     event.preventDefault();
+     var validTeams = [1574, 1576, 1577, 1580,
+                     1690, 1942, 2230, 2630,
+                     2679, 3065, 3083, 3211,
+                     3316, 3339, 4319, 4320,
+                     4338, 5135, 5654, 5715,
+                     5990, 6230, 6738, 6740,
+                     6741, 7067, 7177, 8175,
+                     9303, 9738, 9740, 9741];
+
     var data = {
         'scouter_name': document.querySelector('input[name="scouter_name"]').value,
         'qual_number': document.querySelector('input[name="qual_number"]').value,
@@ -200,11 +209,14 @@ function submitForm() {
         'Climbed with another robot': document.getElementById('vehicle6').checked
     };
 
+var teamNumber = document.getElementsByName('team')[0].value;
 
+        if (!validTeams.includes(parseInt(teamNumber))) {
+            alert('The team number is not valid.');
+            return false;
+        }
 
     var jsonData = JSON.stringify(data);
-
-    // Create a new XMLHttpRequest
     var xhr = new XMLHttpRequest();
 
     // Configure the request
