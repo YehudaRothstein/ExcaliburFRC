@@ -61,10 +61,7 @@
 </head>
 
 <form id="scoutForm" action="http://192.168.1.110:5000/process_form" method="post" onsubmit="return submitForm()">
-    <p>Your name:</p>
-    <label>
-        <input type="text" name="scouter_name">
-    </label>
+
 
     <p>Qual Number:</p>
     <label>
@@ -188,6 +185,7 @@
     </div>
 
 <script>
+    var scouter_name = "{{ session['username'] }}";
 function submitForm() {
     event.preventDefault();
     const validTeams = [1574, 1576, 1577, 1580,
@@ -200,7 +198,7 @@ function submitForm() {
         9303, 9738, 9740, 9741];
 
     const data = {
-        'scouter_name': document.querySelector('input[name="scouter_name"]').value,
+        'scouter_name': scouter_name,
         'qual_number': document.querySelector('input[name="qual_number"]').value,
         'team': document.querySelector('input[name="team"]').value,
         'Alliances Options': document.querySelector('select[name="Alliances Options"]').value,

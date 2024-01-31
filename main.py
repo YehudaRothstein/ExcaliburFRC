@@ -1,5 +1,5 @@
 import os, socket, json, sqlite3
-from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory
+from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory, session
 
 
 # Initialize Flask application
@@ -21,6 +21,7 @@ def login():
         user = cursor.fetchone()
 
         if user and password == '6738':
+            session['username'] = username
             return redirect(url_for('scout'))
         else:
             flash('Invalid username or password')
