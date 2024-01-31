@@ -1,5 +1,5 @@
     .content-container {
-        padding: 20px !important; /* Adjust the value as needed */
+        padding: 20px;
     }
 
     .form-group {
@@ -8,7 +8,7 @@
     }
 
     h6 {
-        margin-right: 10px !important; /* Adjust the spacing between h6 and select */
+        margin-right: 10px ;
          margin-left: 20px;
 
     }

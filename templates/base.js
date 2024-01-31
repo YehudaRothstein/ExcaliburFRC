@@ -3,7 +3,6 @@
         counterValue = Math.max(0, counterValue + change);
         document.getElementById(counterId).value = counterValue;
 
-        // Update the total counters for each category
         let totalCounterId = 'totalCounter' + category;
         let totalCounterValue = parseInt(document.getElementById(totalCounterId).value);
         totalCounterValue = Math.max(0, totalCounterValue + change);
@@ -20,5 +19,5 @@
         }
 
         function updateCounter(change, counterId, category) {
-    // function body
+
 }

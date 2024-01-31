@@ -9,7 +9,6 @@ app = Flask(__name__)
 session ={}
 session = {}
 socket.getaddrinfo('localhost', 5000)
-
 LOCAL_IP = '192.168.1.103'
 
 @app.route("/")
@@ -45,6 +44,7 @@ def scout():
     except Exception as e:
         print(f"An error occurred: {e}")
     return render_template("Scout.html")
+
 @app.route('/get-json-data')
 def get_json_data():
     return send_from_directory('static', 'Data.json')
@@ -57,11 +57,9 @@ def process_form():
 def test():
     return render_template("new.html", local_ip=LOCAL_IP)
 
-
 @app.route("/test_new")
 def test_new():
     return render_template("new.html", local_ip=LOCAL_IP)
-
 
 @app.route("/ReportBugs", methods=["POST", "GET"])
 def ReportBug():
@@ -70,10 +68,10 @@ def ReportBug():
 @app.route('/static/<path:path>')
 def send_js(path):
     return send_from_directory('static', path)
+
 @app.route("/<usr>")
 def user(usr):
     return f"<h1>{usr}</h1>"
-
 
 @app.route("/Autonomous", methods=["POST", "GET"])
 def Autonomus():
@@ -82,7 +80,6 @@ def Autonomus():
 @app.route('/get-json')
 def get_json():
     return send_from_directory('static', 'Data.json')
-
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
