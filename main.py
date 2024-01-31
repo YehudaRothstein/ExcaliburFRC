@@ -1,3 +1,4 @@
+
 import os, socket
 
 from flask import Flask, render_template, redirect, url_for, request, jsonify, send_from_directory
@@ -12,32 +13,50 @@ socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = socket.gethostbyname(socket.gethostname())
 
 @app.route("/Scout", methods=["POST", "GET"])
-def Scout():
+def scout():
     if request.method == 'POST':
-        scout_data = request.form.to_dict()
+        data = request.form.to_dict()
+        existing_data = {}
+        json_file_path = "static/Data.json"
+        if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
+            with open(json_file_path, "r") as file:
+                try:
+                    existing_data = json.load(file)
+                except json.JSONDecodeError:
+                    print("JSONDecodeError: The file is empty or not properly formatted")
 
-        with open("static/Data.json", "w") as file:
-            json.dump(scout_data, file)
+        key = data['team']
+        if key not in existing_data:
+            existing_data[key] = []
+        existing_data[key].append(data)
 
-    return render_template("Scout.html", local_ip=LOCAL_IP)
-@app.route("/<name>")
-def home_with_name(name):
-    return render_template("index.html", local_ip=LOCAL_IP)
+        with open(json_file_path, "w") as file:
+            json.dump(existing_data, file, indent=4)  # pretty-print the JSON data
 
+        return "Data saved successfully"
+
+    return render_template("Scout.html")
+
+@app.route('/get-json-data')
+def get_json_data():
+    return send_from_directory('static', 'Data.json')
+
+@app.route("/process_form", methods=["POST"])
+def process_form():
+    return "Form processed successfully"
 
 @app.route("/home")
 def test():
     return render_template("new.html", local_ip=LOCAL_IP)
 
-
 @app.route("/test_new")
 def test_new():
     return render_template("new.html", local_ip=LOCAL_IP)
 
-
 @app.route("/ReportBugs", methods=["POST", "GET"])
 def ReportBug():
   return render_template("Report.html", local_ip=LOCAL_IP)
+
 
 
 @app.route("/<usr>")
@@ -68,4 +87,4 @@ def get_json():
 if __name__ == '__main__':
     app.run(host=LOCAL_IP, port=5000, debug=True)
     app.secret_key = 'your_secret_key_here'
-
+    app.run(host="192.168.1.103", port=5000, debug=True)
