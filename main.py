@@ -1,23 +1,17 @@
 import os, socket
-
 from flask import Flask, render_template, redirect, url_for, request, jsonify, send_from_directory
 import json
-
 from pip._internal.utils import datetime
 
 # Initialize Flask application
 app = Flask(__name__)
 session ={}
 socket.getaddrinfo('localhost', 5000)
-
 LOCAL_IP = '192.168.1.103'
 
-@app.route("/")
-def home():
-    return render_template("new.html")
 
 @app.route("/Login")
-def login():
+def home():
     return render_template("Login.html")
 
 @app.route("/Scout", methods=["POST", "GET"])
@@ -71,14 +65,13 @@ def process_form():
     """
     return "Form processed successfully"
 
-
+@app.route("/home")
 def test():
     """
     Route for the test page.
     Returns the rendered template for the test page.
     """
     return render_template("new.html", local_ip=LOCAL_IP)
-
 
 @app.route("/test_new")
 def test_new():
@@ -87,7 +80,6 @@ def test_new():
     Returns the rendered template for the new test page.
     """
     return render_template("new.html", local_ip=LOCAL_IP)
-
 
 @app.route("/ReportBugs", methods=["POST", "GET"])
 def ReportBug():
@@ -104,6 +96,7 @@ def send_js(path):
     Returns the requested static file.
     """
     return send_from_directory('static', path)
+
 @app.route("/<usr>")
 def user(usr):
     """
@@ -111,7 +104,6 @@ def user(usr):
     Returns a personalized greeting for the user.
     """
     return f"<h1>{usr}</h1>"
-
 
 @app.route("/Autonomous", methods=["POST", "GET"])
 def Autonomus():
@@ -129,8 +121,6 @@ def get_json():
     """
     return send_from_directory('static', 'Data.json')
 
-
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
     app.secret_key = 'your_secret_key_here'
-
