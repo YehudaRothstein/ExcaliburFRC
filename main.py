@@ -8,24 +8,26 @@ app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '192.168.1.103'
 
-
-@app.route("/Login", methods=["POST", "GET"])
+@app.route("/Login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        conn = sqlite3.connect('static/usersdata.db')
-        c = conn.cursor()
-        c.execute("SELECT * FROM name WHERE name=?", (username,))
-        user = c.fetchone()
 
-        if user is None:
-            return 'Username not found', 400  # Return an error status code
-        elif password != '6738':
-            return 'Incorrect password', 400  # Return an error status code
+        conn = sqlite3.connect('static/usersdata.db')
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM 'users' WHERE name=?", (username,))
+        user = cursor.fetchone()
+
+        if user and password == '6738':
+            return redirect(url_for('scout'))
         else:
-            return 'Login successful'  # Return a success message
+            flash('Invalid username or password')
+            return render_template("Login.html")
+
     return render_template("Login.html")
+
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
     """

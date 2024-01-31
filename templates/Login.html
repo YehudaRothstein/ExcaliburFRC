@@ -1,6 +1,5 @@
 {% extends "base.html"%}
-{% block content %}Login
-
+{% block content %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -38,10 +37,7 @@
     }
 </style>
 
-
-
-
-<form method="POST" action="{{ url_for('login') }}">
+<form method="POST">
     <p>Username:</p>
     <label>
         <input type="text" name="username">
@@ -54,37 +50,5 @@
     <br>
     <button type="submit">Submit</button>
 </form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    $("form").on("submit", function(event) {
-        event.preventDefault();  // Prevent the form from submitting immediately
-        console.log("Sending AJAX request");
-        var form = this;
 
-        $.ajax({
-            url: $(form).attr("action"),
-            type: $(form).attr("method"),
-            data: $(form).serialize(),
-            success: function(response) {
-                if (response === "Login successful") {
-                    alert(response);
-                    window.location.href = "{{ url_for('scout') }}";
-                } else {
-                    alert("Not valid");
-                    form.reset();
-                }
-            }
-        });
-    });
-});
-</script>
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-    <div class="alert alert-success">
-        {{ messages[0] }}
-    </div>
-{% endif %}
-{% endwith %}
 {% endblock %}
