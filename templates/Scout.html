@@ -192,10 +192,16 @@ function submitForm() {
         'Teleop Speaker': document.getElementById('counter4').value,
         'EndGame AMP': document.getElementById('counter5').value,
         'EndGame Speaker': document.getElementById('counter6').value,
-        'EndGame Trap': document.getElementById('counter7').value
+        'EndGame Trap': document.getElementById('counter7').value,
+        'Leaving the area': document.getElementById('vehicle2').checked,
+        'Click Cooperation': document.getElementById('vehicle3').checked,
+        'Cooperation point': document.getElementById('vehicle4').checked,
+        'Climb': document.getElementById('vehicle5').checked,
+        'Climbed with another robot': document.getElementById('vehicle6').checked
     };
 
-    // Convert the JavaScript object to a JSON string
+
+
     var jsonData = JSON.stringify(data);
 
     // Create a new XMLHttpRequest
@@ -220,7 +226,6 @@ function submitForm() {
         alert('An error occurred: ' + xhr.responseText);  // Display more details in the alert
     };
 
-    // Send the JSON data
     xhr.send(jsonData);
 }
 </script>
