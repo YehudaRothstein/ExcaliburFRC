@@ -1,4 +1,33 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 {% block content %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+      text-align: center;
+      background-color: #012265;
+    }
+    p, h2, button, input, label, h6, h4  {
+        color: #d3af37;
+        border: none;
+    }
+       button{
+        background-color: #d3af37;
+        color: #012265;
+        border: none;
+    }
+
+</style>
+
+<h4>Your next quals:</h4>
+<p style="white-space: pre-line;">
+    Qual number:
+    Pose:
+    Alliance:
+</p>
+
+<button type="button">Scout!</button>
+<hr style="width:50%;text-align:left;margin-left:0">
 
 {% endblock %}
