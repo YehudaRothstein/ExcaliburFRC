@@ -1,12 +1,12 @@
 import os, socket, json, sqlite3
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory, session
 
-
 # Initialize Flask application
 app = Flask(__name__)
 app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '192.168.1.103'
+
 
 @app.route("/Login", methods=["GET", "POST"])
 def login():
@@ -28,6 +28,7 @@ def login():
             return render_template("Login.html")
 
     return render_template("Login.html")
+
 
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
@@ -64,6 +65,7 @@ def scout():
         print(f"An error occurred: {e}")
     return render_template("Scout.html")
 
+
 @app.route('/get-json-data')
 def get_json_data():
     """
@@ -71,6 +73,7 @@ def get_json_data():
     Returns the JSON data from the static directory.
     """
     return send_from_directory('static', 'Data.json')
+
 
 @app.route("/process_form", methods=["POST"])
 def process_form():
@@ -80,6 +83,7 @@ def process_form():
     """
     return "Form processed successfully"
 
+
 @app.route("/home")
 def test():
     """
@@ -87,6 +91,7 @@ def test():
     Returns the rendered template for the test page.
     """
     return render_template("new.html", local_ip=LOCAL_IP)
+
 
 @app.route("/test_new")
 def test_new():
@@ -96,6 +101,7 @@ def test_new():
     """
     return render_template("new.html", local_ip=LOCAL_IP)
 
+
 @app.route("/ReportBugs", methods=["POST", "GET"])
 def ReportBug():
     """
@@ -103,6 +109,7 @@ def ReportBug():
     Returns the rendered template for the ReportBugs page.
     """
     return render_template("Report.html", local_ip=LOCAL_IP)
+
 
 @app.route('/static/<path:path>')
 def send_js(path):
@@ -112,6 +119,7 @@ def send_js(path):
     """
     return send_from_directory('static', path)
 
+
 @app.route("/<usr>")
 def user(usr):
     """
@@ -119,6 +127,7 @@ def user(usr):
     Returns a personalized greeting for the user.
     """
     return f"<h1>{usr}</h1>"
+
 
 @app.route("/Autonomous", methods=["POST", "GET"])
 def Autonomus():
@@ -128,6 +137,13 @@ def Autonomus():
     """
     return render_template("autonomous.html", local_ip=LOCAL_IP)
 
+@app.route("/ScoutHomePage")
+def ScoutHomePage ():
+    return render_template("ScoutHomePage.html", local_ip=LOCAL_IP)
+@app.route("/ScoutGuest")
+def ScoutGuest ():
+    return render_template("ScoutGuest.html", local_ip=LOCAL_IP)
+
 @app.route('/get-json')
 def get_json():
     """
@@ -136,13 +152,16 @@ def get_json():
     """
     return send_from_directory('static', 'Data.json')
 
+
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
 @app.route("/Queen-Of-Scouting")
 def queen_of_scouting():
     return render_template("QueenOfScout.html")
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)

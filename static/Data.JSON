@@ -1,0 +1,22 @@
+{
+    "3339": [
+        {
+            "scouter_name": "Eylon Ben Shushan",
+            "qual_number": "65",
+            "team": "3339",
+            "Alliances Options": "Red",
+            "Auto AMP": "0",
+            "Auto Speaker": "3",
+            "Teleop AMP": "13",
+            "Teleop Speaker": "5",
+            "EndGame AMP": "3",
+            "EndGame Speaker": "4",
+            "EndGame Trap": "3",
+            "Leaving the area": true,
+            "Click Cooperation": true,
+            "Cooperation point": true,
+            "Climb": true,
+            "Climbed with another robot": true
+        }
+    ]
+}
