@@ -164,4 +164,4 @@ def queen_of_scouting():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="195.35.49.50", port=5000, debug=True)
