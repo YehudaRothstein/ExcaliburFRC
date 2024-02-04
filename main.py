@@ -5,7 +5,7 @@ from flask import Flask, render_template, redirect, url_for, flash, request, jso
 app = Flask(__name__)
 app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
-LOCAL_IP = '192.168.1.103'
+LOCAL_IP = '195.35.49.50'
 
 
 @app.route("/Login", methods=["GET", "POST"])
@@ -164,4 +164,4 @@ def queen_of_scouting():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="195.35.49.50", port=5000, debug=True)
