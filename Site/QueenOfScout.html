@@ -40,14 +40,17 @@
             color: #d3af37;
         }
     </style>
+    <title></title>
 </head>
 <body>
     <br>
     <h5>Searchable for scouter:</h5>
     <br>
      <div class="dropdown common-width">
-        <input type="text" class="search-input" placeholder="Search for a Scouter">
-        <select id="peopleList" size="5">
+         <label>
+             <input type="text" class="search-input" placeholder="Search for a Scouter">
+         </label>
+         <label for="peopleList"></label><select id="peopleList" size="5">
             <!-- Add your options here -->
             <option value="Ori Korngut">Ori Korngut</option>
             <option value="Uri Feist">Uri Feist</option>
@@ -57,8 +60,10 @@
     <br>
     <br>
     <div class="dropdown common-width">
-        <input type="text" class="search-input" placeholder="Search for a Qual">
-        <select id="Quals" size="5">
+        <label>
+            <input type="text" class="search-input" placeholder="Search for a Qual">
+        </label>
+        <label for="Quals"></label><select id="Quals" size="5">
             <!-- Add your options here -->
             <option value="Qual 1">Qual 1</option>
             <option value="Qual 2">Qual 2</option>
@@ -67,14 +72,14 @@
     </div>
     <br>
     <br>
-    <select name="Where" id="Where" class="common-width">
+    <label for="Where"></label><select name="Where" id="Where" class="common-width">
         <option value="Close to the stand">Close</option>
         <option value="In the middle">Middle</option>
         <option value="Far from the stands">Far</option>
             <br>
     <br>
     </select>
-        <select name="Pose" id="Pose" class="common-width">
+    <label for="Pose"></label><select name="Pose" id="Pose" class="common-width">
         <option value="Red">Red</option>
         <option value="Blue">Blue</option>
     </select>
