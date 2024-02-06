@@ -1,21 +1,21 @@
-import os, socket, json, sqlite3
+import os
+import json
+import sqlite3
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory, session
 
 # Initialize Flask application
 app = Flask(__name__)
 app.secret_key = '6738'
-socket.getaddrinfo('localhost', 5000)
-LOCAL_IP = '195.35.49.50'
 
+# Connect to SQLite database
+conn = sqlite3.connect('Data/usersdata.db')
+cursor = conn.cursor()
 
 @app.route("/Login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
-        conn = sqlite3.connect('static/usersdata.db')
-        cursor = conn.cursor()
 
         cursor.execute("SELECT * FROM 'users' WHERE name=?", (username,))
         user = cursor.fetchone()
@@ -29,7 +29,6 @@ def login():
 
     return render_template("Login.html")
 
-
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
     """
@@ -41,7 +40,7 @@ def scout():
         if request.method == 'POST':
             data = request.get_json()  # Get the JSON data from the request
             existing_data = {}
-            json_file_path = "static/Data.json"
+            json_file_path = "Data/Data.json"
             if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
                 with open(json_file_path, "r") as file:
                     try:
@@ -65,7 +64,6 @@ def scout():
         print(f"An error occurred: {e}")
     return render_template("Scout.html")
 
-
 @app.route('/get-json-data')
 def get_json_data():
     """
@@ -73,7 +71,6 @@ def get_json_data():
     Returns the JSON data from the static directory.
     """
     return send_from_directory('static', 'Data.json')
-
 
 @app.route("/process_form", methods=["POST"])
 def process_form():
@@ -83,15 +80,13 @@ def process_form():
     """
     return "Form processed successfully"
 
-
 @app.route("/home")
 def test():
     """
     Route for the test page.
     Returns the rendered template for the test page.
     """
-    return render_template("new.html", local_ip=LOCAL_IP)
-
+    return render_template("new.html")
 
 @app.route("/test_new")
 def test_new():
@@ -99,8 +94,7 @@ def test_new():
     Route for the new test page.
     Returns the rendered template for the new test page.
     """
-    return render_template("new.html", local_ip=LOCAL_IP)
-
+    return render_template("new.html")
 
 @app.route("/ReportBugs", methods=["POST", "GET"])
 def ReportBug():
@@ -108,8 +102,7 @@ def ReportBug():
     Route for the ReportBugs page.
     Returns the rendered template for the ReportBugs page.
     """
-    return render_template("Report.html", local_ip=LOCAL_IP)
-
+    return render_template("Report.html")
 
 @app.route('/static/<path:path>')
 def send_js(path):
@@ -119,7 +112,6 @@ def send_js(path):
     """
     return send_from_directory('static', path)
 
-
 @app.route("/<usr>")
 def user(usr):
     """
@@ -128,21 +120,21 @@ def user(usr):
     """
     return f"<h1>{usr}</h1>"
 
-
 @app.route("/Autonomous", methods=["POST", "GET"])
 def Autonomus():
     """
     Route for the Autonomous page.
     Returns the rendered template for the Autonomous page.
     """
-    return render_template("autonomous.html", local_ip=LOCAL_IP)
+    return render_template("autonomous.html")
 
 @app.route("/ScoutHomePage")
-def ScoutHomePage ():
-    return render_template("ScoutHomePage.html", local_ip=LOCAL_IP)
+def ScoutHomePage():
+    return render_template("ScoutHomePage.html")
+
 @app.route("/ScoutGuest")
-def ScoutGuest ():
-    return render_template("ScoutGuest.html", local_ip=LOCAL_IP)
+def ScoutGuest():
+    return render_template("ScoutGuest.html")
 
 @app.route('/get-json')
 def get_json():
@@ -152,16 +144,13 @@ def get_json():
     """
     return send_from_directory('static', 'Data.json')
 
-
 @app.route("/")
 def home():
     return render_template("index.html")
-
 
 @app.route("/Queen-Of-Scouting")
 def queen_of_scouting():
     return render_template("QueenOfScout.html")
 
-
 if __name__ == '__main__':
-    app.run(host="195.35.49.50", port=5000, debug=True)
+    app.run()
