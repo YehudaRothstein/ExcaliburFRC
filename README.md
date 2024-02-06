@@ -1,4 +1,4 @@
-# ExcaliburFRC
+  # ExcaliburFRC
 Repository Description:
 
 🤖 **FRC Team 6738 Excalibur Scouting Website 🛡️**
@@ -26,9 +26,5 @@ We welcome contributions from the community! Whether you're a seasoned developer
 2. Install dependencies: [Instructions here]
 3. Contribute your code and ideas to make scouting smarter and more effective!
 
-🤝 **Connect with Us:**
-- Website: [Insert Team Website]
-- Twitter: [@Team6738]
-- Email: [team6738@example.com]
 
 Let's build a powerful scouting tool together and elevate the success of FRC Team 6738 Excalibur! ⚔️ #FIRSTRobotics #FRC6738 #ExcaliburScouts
