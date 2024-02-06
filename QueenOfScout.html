@@ -1,0 +1,102 @@
+{% extends "base.html"%}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+            body {
+      text-align: center;
+      background-color: #012265;
+    }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 300px;
+        }
+        .common-width {
+            width: 300px;
+        }
+        /* Style for the search input */
+        .search-input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            background-color: #d3af37;
+            color : #012265;
+            border: none;
+        }
+
+        /* Style for the select dropdown */
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            background-color: #d3af37;
+            color : #012265;
+        }
+        h5 {
+            font-weight: bold;
+            color: #d3af37;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+    <br>
+    <h5>Searchable for scouter:</h5>
+    <br>
+     <div class="dropdown common-width">
+         <label>
+             <input type="text" class="search-input" placeholder="Search for a Scouter">
+         </label>
+         <label for="peopleList"></label><select id="peopleList" size="5">
+            <!-- Add your options here -->
+            <option value="Ori Korngut">Ori Korngut</option>
+            <option value="Uri Feist">Uri Feist</option>
+            <option value="Yehuda Rothstein">Yehuda Rothstein</option>
+        </select>
+    </div>
+    <br>
+    <br>
+    <div class="dropdown common-width">
+        <label>
+            <input type="text" class="search-input" placeholder="Search for a Qual">
+        </label>
+        <label for="Quals"></label><select id="Quals" size="5">
+            <!-- Add your options here -->
+            <option value="Qual 1">Qual 1</option>
+            <option value="Qual 2">Qual 2</option>
+            <option value="Qual 3">Qual 3</option>
+        </select>
+    </div>
+    <br>
+    <br>
+    <label for="Where"></label><select name="Where" id="Where" class="common-width">
+        <option value="Close to the stand">Close</option>
+        <option value="In the middle">Middle</option>
+        <option value="Far from the stands">Far</option>
+            <br>
+    <br>
+    </select>
+    <label for="Pose"></label><select name="Pose" id="Pose" class="common-width">
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+    </select>
+    <script>
+        document.querySelector('.search-input').addEventListener('input', function () {
+            const input = this.value.toLowerCase();
+            const options = document.getElementById('peopleList').options;
+
+            // Loop through options and hide/show based on search input
+            for (let i = 0; i < options.length; i++) {
+                const optionText = options[i].text.toLowerCase();
+                if (optionText.includes(input)) {
+                    options[i].style.display = '';
+                } else {
+                    options[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
+{% endblock %}

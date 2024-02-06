@@ -1,0 +1,54 @@
+{% extends "base.html"%}
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+      text-align: center;
+      background-color: #012265;
+    }
+    p, h2, button, input, label, h6  {
+        color: #d3af37;
+    }
+    input[name="username"], input[name="password"] {
+        background-color: #d3af37;
+        color: #012265;
+    }
+    .button-set {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 150px;  /* Set the maximum width for the button set */
+        margin: 0 auto;    /* Center the button set */
+    }
+    .button-set button, button {
+        width: 100px;  /* Adjust the width of the +/- buttons */
+        height: 30px;
+        font-size: 16px;  /* Adjust the font size of the buttons */
+        background-color: #d3af37;
+        color: #012265;
+        border: none;
+    }
+    .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+        margin-bottom: 15px;
+    }
+</style>
+
+<form method="POST">
+    <p>Username:</p>
+    <label>
+        <input type="text" name="username">
+    </label>
+    <p>Password:</p>
+    <label>
+        <input type="password" name="password">
+    </label>
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
