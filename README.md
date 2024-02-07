@@ -1,34 +1,25 @@
-# ExcaliburFRC
-Repository Description:
+  # ExcaliburFRC ⚔️
 
 🤖 **FRC Team 6738 Excalibur Scouting Website 🛡️**
 
-Welcome to the official repository for FRC Team 6738 Excalibur's cutting-edge scouting website! 🚀 Explore our comprehensive platform designed to revolutionize the way we gather and analyze data during FIRST Robotics Competitions.
+- ### Welcome to the official repository for FRC Team 6738 Excalibur's scouting website 🚀
 
-🔍 **Key Features:**
-- **Real-time Data Collection:** Capture match statistics, team performances, and scouting insights on the fly.
-- **User-Friendly Interface:** Intuitive design for seamless navigation and efficient data input.
-- **Collaborative Scouting:** Facilitate teamwork with multi-user access and synchronized data updates.
-- **Customizable Metrics:** Tailor the scouting experience to focus on the metrics that matter most to your strategy.
-- **Data Visualization:** Transform raw data into actionable insights with interactive charts and graphs.
+```yml 
+- Still in progress, hope to finish soon....
+```
 
-⚙️ **Tech Stack:**
-- **Frontend:** [Insert Frontend Framework/Language]
-- **Backend:** [Insert Backend Framework/Language]
-- **Database:** [Insert Database System]
-- **Hosting:** [Insert Hosting Platform]
 
-👩‍💻 **Contributing:**
-We welcome contributions from the community! Whether you're a seasoned developer, a data enthusiast, or a robotics aficionado, join us in enhancing the scouting experience for FRC Team 6738 Excalibur.
+## *If you liked the project and want to help us please contact someone from here:*
+## Github:
+>  - [***YehudaRothstein***](https://github.com/YehudaRothstein)
+>  - [***Korngut***](https://github.com/Korngut)
+>  - [***I-No-oNe***](https://github.com/I-No-oNe)
+>  - [***Keller6738***](https://github.com/Keller6738)
+## Discord:
+> - [***yehudarothstein***](https://discord.com/users/786236101471371275)
+> - [***Korngut***](https://discord.com/users/1118946299560067142)
+> - [***I-No-oNe***](https://discord.com/users/1051897115447660697)
+> - [***Keller6738***](https://discord.com/users/1120983179281567774)
 
-🚀 **Get Started:**
-1. Clone the repository: `git clone https://github.com/yourusername/excalibur-scouting.git`
-2. Install dependencies: [Instructions here]
-3. Contribute your code and ideas to make scouting smarter and more effective!
 
-🤝 **Connect with Us:**
-- Website: [Insert Team Website]
-- Twitter: [@Team6738]
-- Email: [team6738@example.com]
-
-Let's build a powerful scouting tool together and elevate the success of FRC Team 6738 Excalibur! ⚔️ #FIRSTRobotics #FRC6738 #ExcaliburScouts
+### Good luck to everyone in their competitions🤖
