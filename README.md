@@ -1,5 +1,4 @@
-  # ExcaliburFRC
-Repository Description:
+  # ExcaliburFRC ⚔️
 
 🤖 **FRC Team 6738 Excalibur Scouting Website 🛡️**
 
