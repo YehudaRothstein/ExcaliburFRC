@@ -2,7 +2,6 @@
 {% block title %}Scout{% endblock %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="base.css">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -226,8 +225,9 @@ function updateCounter(change, counterId, category) {
     </div>
 
 <script>
-    var scouter_name = "{{ session['username'] }}";
-function submitForm() {
+    const scouter_name = "{{ session['username'] }}";
+
+    function submitForm() {
     event.preventDefault();
     const validTeams = [1574, 1576, 1577, 1580,
         1690, 1942, 2230, 2630,
@@ -298,8 +298,10 @@ function submitForm() {
     <form action="/Scout" method="post">
     <br>
     <p>Comments:</p>
-    <textarea name="comments" rows="4" cols="50"></textarea>
-    <br>
+        <label>
+            <textarea name="comments" rows="4" cols="50"></textarea>
+        </label>
+        <br>
     <input type="submit" value="Submit">
 </form>
 <br>
