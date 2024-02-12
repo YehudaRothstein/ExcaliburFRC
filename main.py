@@ -157,7 +157,7 @@ def get_json():
 def home():
     return render_template("index.html")
 
-
+#hji
 @app.route("/Queen-Of-Scouting")
 def queen_of_scouting():
     return render_template("QueenOfScout.html")
