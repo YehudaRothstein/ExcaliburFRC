@@ -7,7 +7,6 @@ app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '0.0.0.0'
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':

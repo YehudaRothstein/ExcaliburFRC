@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Scout{% endblock %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Scout.css') }}">
+<link rel="stylesheet" type="text/css" href="/templates/base.css">
 
-<link rel="stylesheet" type="text/css" href="C:\Users\PC -23\PycharmProjects\ExcaliburFRC\templates">
+<link rel="stylesheet" type="text/css" href="/templates">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -215,8 +215,9 @@
     </div>
 
 <script>
-    var scouter_name = "{{ session['username'] }}";
-function submitForm() {
+    const scouter_name = "{{ session['username'] }}";
+
+    function submitForm() {
     event.preventDefault();
     const validTeams = [1574, 1576, 1577, 1580,
         1690, 1942, 2230, 2630,

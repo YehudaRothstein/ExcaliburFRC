@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Scout{% endblock %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Scout.css') }}">
-
-<link rel="stylesheet" type="text/css" href="C:\Users\PC -23\PycharmProjects\ExcaliburFRC\templates">
+<link rel="stylesheet" type="text/css" href="base.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+    textarea{
+        background-color: #d3af37;
+        color: #012265;
+    }
+    hr{
+        border: none;
+        border-top: 2px solid black;
+    }
     body {
       text-align: center;
       background-color: #012265;
@@ -82,23 +88,25 @@
     </select>
 
     <script>
-    function updateCounter(change, counterId, category) {
-        let counterValue = parseInt(document.getElementById(counterId).value);
-        if (counterId === 'counter7' && counterValue >= 3 && change > 0) {
-            // If the counter is for "Trap" and it's already at 3, don't increment it
-            return;
-        }
-        counterValue = Math.max(0, counterValue + change);
-        document.getElementById(counterId).value = counterValue;
-        let totalCounterId = 'totalCounter' + category;
-        let totalCounterValue = parseInt(document.getElementById(totalCounterId).value);
-        totalCounterValue = Math.max(0, totalCounterValue + change);
-        document.getElementById(totalCounterId).value = totalCounterValue;
+function updateCounter(change, counterId, category) {
+    let counterValue = parseInt(document.getElementById(counterId).value);
+    if ((counterId === 'counter7' && counterValue >= 3 && change > 0) ||
+        (counterId === 'counter3' && counterValue >= 5 && change > 0) ||
+        (counterId === 'counter8' && counterValue >= 3 && change > 0)) {
+        return;
     }
+    counterValue = Math.max(0, counterValue + change);
+    document.getElementById(counterId).value = counterValue;
+    let totalCounterId = 'totalCounter' + category;
+    let totalCounterValue = parseInt(document.getElementById(totalCounterId).value);
+    totalCounterValue = Math.max(0, totalCounterValue + change);
+    document.getElementById(totalCounterId).value = totalCounterValue;
+}
     </script>
 
     <br>
     <br>
+    <hr>
     <h2>Autonomous</h2>
 
     <h6>AMP:</h6>
@@ -110,6 +118,7 @@
         <br>
     <h6>Speaker:</h6>
     <div class="button-set">
+
         <button onclick="event.preventDefault(); updateCounter(-1, 'counter2', 'Autonomous')">-</button>
         <label for="counter2"></label><input type="text" id="counter2" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter2', 'Autonomous')">+</button>
@@ -117,23 +126,23 @@
         <br>
     <div class="checkbox-container">
         <input type="checkbox" id="vehicle4" name="Another checkbox" value="Another checkbox">
-        <label for="vehicle4">left the area</label>
+        <label for="vehicle4">Left Robot Starting Zone</label>
     </div>
         <br>
     <div class="checkbox-container">
         <input type="checkbox" id="vehicle2" name="Another checkbox" value="Another checkbox">
-        <label for="vehicle2">Collected from the middle</label>
+        <label for="vehicle2">Arrived To the middle</label>
     </div>
         <br>
 
-    <h6>Collecting parts from the middle:</h6>
+    <h6>Collected parts from the middle:</h6>
     <div class="button-set">
         <button onclick="event.preventDefault(); updateCounter(-1, 'counter3', 'Autonomous')">-</button>
         <label for="counter3"></label><input type="text" id="counter3" value="0" readonly>
         <button onclick="event.preventDefault(); updateCounter(1, 'counter3', 'Autonomous')">+</button>
     </div>
         <br>
-
+<hr>
     <h2>Teleop</h2>
 
     <h6>AMP:</h6>
@@ -158,7 +167,7 @@
         <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'Teleop')">+</button>
         </div>
             <br>
-
+<hr>
     <h2>EndGame</h2>
     <title>Timer Climb</title>
           <style>
@@ -216,8 +225,9 @@
     </div>
 
 <script>
-    var scouter_name = "{{ session['username'] }}";
-function submitForm() {
+    const scouter_name = "{{ session['username'] }}";
+
+    function submitForm() {
     event.preventDefault();
     const validTeams = [1574, 1576, 1577, 1580,
         1690, 1942, 2230, 2630,
@@ -228,24 +238,29 @@ function submitForm() {
         6741, 7067, 7177, 8175,
         9303, 9738, 9740, 9741];
 
-    const data = {
+   const data = {
         'scouter_name': scouter_name,
         'qual_number': document.querySelector('input[name="qual_number"]').value,
         'team': document.querySelector('input[name="team"]').value,
         'Alliances Options': document.querySelector('select[name="Alliances Options"]').value,
+        'left_robot_starting_zone': document.getElementById('vehicle4').checked,
+        'arrived_to_the_middle': document.getElementById('vehicle2').checked,
+        'collected_parts_from_the_middle': document.getElementById('counter3').value,
         'Auto AMP': document.getElementById('counter1').value,
         'Auto Speaker': document.getElementById('counter2').value,
-        'Teleop AMP': document.getElementById('counter3').value,
-        'Teleop Speaker': document.getElementById('counter4').value,
-        'EndGame AMP': document.getElementById('counter5').value,
-        'EndGame Speaker': document.getElementById('counter6').value,
-        'EndGame Trap': document.getElementById('counter7').value,
+        'Teleop AMP': document.getElementById('counter4').value,
+        'Teleop Speaker': document.getElementById('counter5').value,
+        'EndGame AMP': document.getElementById('counter6').value,
+        'EndGame Speaker': document.getElementById('counter7').value,
+        'EndGame Trap': document.getElementById('counter8').value,
         'Leaving the area': document.getElementById('vehicle2').checked,
         'Click Cooperation': document.getElementById('vehicle3').checked,
         'Cooperation point': document.getElementById('vehicle4').checked,
         'Climb': document.getElementById('vehicle5').checked,
-        'Climbed with another robot': document.getElementById('vehicle6').checked
+        'Climbed with another robot': document.getElementById('vehicle6').checked,
+        'comments': document.querySelector('textarea[name="comments"]').value
     };
+
 
     const teamNumber = document.getElementsByName('team')[0].value;
 
@@ -280,6 +295,16 @@ function submitForm() {
 }
 
 </script>
+    <form action="/Scout" method="post">
+    <br>
+    <p>Comments:</p>
+        <label>
+            <textarea name="comments" rows="4" cols="50"></textarea>
+        </label>
+        <br>
+    <input type="submit" value="Submit">
+</form>
+<br>
 
 <form action="/Scout" method="post">
             <br>
