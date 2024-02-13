@@ -21,7 +21,7 @@ def login():
 
         if user and password == '6738':
             session['username'] = username
-            return redirect(url_for('scout'))
+            return redirect('/Scout.html')
         else:
             flash('Invalid username or password')
             return render_template("Login.html")
