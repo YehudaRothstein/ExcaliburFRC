@@ -2,7 +2,7 @@ import os, socket, json, sqlite3
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory, session
 
 # Initialize Flask application
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '0.0.0.0'
@@ -40,7 +40,7 @@ def scout():
         if request.method == 'POST':
             data = request.get_json()  # Get the JSON data from the request
             existing_data = {}
-            json_file_path = "static/Data.json"
+            json_file_path = "Data/Data.json"
             if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
                 with open(json_file_path, "r") as file:
                     try:
