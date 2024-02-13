@@ -26,7 +26,7 @@ def login():
             flash('Invalid username or password')
             return render_template("Login.html")
 
-    return render_template("Scout.html")
+    return render_template("/Scout.html")
 
 
 @app.route("/Scout", methods=["POST", "GET"])
