@@ -5,10 +5,11 @@ from flask import Flask, render_template, redirect, url_for, flash, request, jso
 app = Flask(__name__)
 app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
-LOCAL_IP = '192.168.1.103'
+LOCAL_IP = '0.0.0.0'
+app = Flask(__name__, template_folder='Site')
 
 
-@app.route("/Login", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
         username = request.form['username']
