@@ -11,7 +11,7 @@ LOCAL_IP = '0.0.0.0'
 def handle_exception(e):
     return jsonify({"error": "An error occurred", "details": str(e)}), 500
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/Login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -22,6 +22,10 @@ def login():
 
         cursor.execute('SELECT * FROM users WHERE name = ?', (username,))
         user = cursor.fetchone()
+
+        if user is None or user[1] != password:
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
 
         session['username'] = username
         return redirect(url_for('scout'))  # Redirect to Scout page
@@ -65,12 +69,17 @@ def scout():
 
 @app.route('/get-json-data')
 def get_json_data():
-    """
-    Route for getting the JSON data.
-    Returns the JSON data from the static directory.
-    """
-    return send_from_directory('../Data', 'Data.json')
+    if os.path.exists('../Data/Data.json'):
+        return send_from_directory('../Data', 'Data.json')
+    else:
+        return jsonify({"error": "File not found"}), 404
 
+@app.route('/get-json')
+def get_json():
+    if os.path.exists('../Data/Data.json'):
+        return send_from_directory('../Data', 'Data.json')
+    else:
+        return jsonify({"error": "File not found"}), 404
 
 @app.route("/process_form", methods=["POST"])
 def process_form():
