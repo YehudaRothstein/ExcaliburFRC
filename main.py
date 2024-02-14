@@ -2,7 +2,7 @@ import os, socket, json, sqlite3
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory, session
 
 # Initialize Flask application
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '0.0.0.0'
@@ -13,7 +13,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        conn = sqlite3.connect('static/usersdata.db')
+        conn = sqlite3.connect('Data/usersdata.db')
         cursor = conn.cursor()
 
         cursor.execute("SELECT * FROM 'users' WHERE name=?", (username,))
@@ -40,7 +40,7 @@ def scout():
         if request.method == 'POST':
             data = request.get_json()  # Get the JSON data from the request
             existing_data = {}
-            json_file_path = "static/Data.json"
+            json_file_path = "Data/Data.json"
             if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
                 with open(json_file_path, "r") as file:
                     try:
@@ -71,7 +71,7 @@ def get_json_data():
     Route for getting the JSON data.
     Returns the JSON data from the static directory.
     """
-    return send_from_directory('static', 'Data.json')
+    return send_from_directory('Data', 'Data.json')
 
 
 @app.route("/process_form", methods=["POST"])
@@ -110,13 +110,13 @@ def ReportBug():
     return render_template("Report.html", local_ip=LOCAL_IP)
 
 
-@app.route('/static/<path:path>')
+@app.route('/Data/<path:path>')
 def send_js(path):
     """
     Route for serving static files.
     Returns the requested static file.
     """
-    return send_from_directory('static', path)
+    return send_from_directory('Data', path)
 
 
 @app.route("/<usr>")
@@ -149,7 +149,7 @@ def get_json():
     Route for getting the JSON data.
     Returns the JSON data from the static directory.
     """
-    return send_from_directory('static', 'Data.json')
+    return send_from_directory('Data', 'Data.json')
 
 
 @app.route("/")
