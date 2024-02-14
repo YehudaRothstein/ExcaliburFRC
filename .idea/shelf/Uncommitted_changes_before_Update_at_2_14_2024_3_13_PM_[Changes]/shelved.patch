@@ -1,0 +1,335 @@
+Index: .idea/dataSources.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+new file mode 100644
+--- /dev/null	(date 1707915952597)
++++ b/.idea/dataSources.xml	(date 1707915952597)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
++    <data-source source="LOCAL" name="usersdata" uuid="9e732281-bc50-425f-9202-6bb2b47db2fa">
++      <driver-ref>sqlite.xerial</driver-ref>
++      <synchronize>true</synchronize>
++      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
++      <jdbc-url>jdbc:sqlite:C:\Users\USER\PycharmProjects\ExcaliburFRC\Data\usersdata.db</jdbc-url>
++      <working-dir>$ProjectFileDir$</working-dir>
++      <libraries>
++        <library>
++          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.43.0/org/xerial/sqlite-jdbc/3.43.0.0/sqlite-jdbc-3.43.0.0.jar</url>
++        </library>
++      </libraries>
++    </data-source>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+--- /dev/null	(date 1707915620319)
++++ b/.idea/inspectionProfiles/Project_Default.xml	(date 1707915620319)
+@@ -0,0 +1,91 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
++      <Languages>
++        <language minSize="60" name="Python" />
++      </Languages>
++    </inspection_tool>
++    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
++      <option name="myValues">
++        <value>
++          <list size="9">
++            <item index="0" class="java.lang.String" itemvalue="nobr" />
++            <item index="1" class="java.lang.String" itemvalue="noembed" />
++            <item index="2" class="java.lang.String" itemvalue="comment" />
++            <item index="3" class="java.lang.String" itemvalue="noscript" />
++            <item index="4" class="java.lang.String" itemvalue="embed" />
++            <item index="5" class="java.lang.String" itemvalue="script" />
++            <item index="6" class="java.lang.String" itemvalue="h8" />
++            <item index="7" class="java.lang.String" itemvalue="title" />
++            <item index="8" class="java.lang.String" itemvalue="style" />
++          </list>
++        </value>
++      </option>
++      <option name="myCustomValuesEnabled" value="true" />
++    </inspection_tool>
++    <inspection_tool class="HttpUrlsUsage" enabled="true" level="WEAK WARNING" enabled_by_default="true">
++      <option name="ignoredUrls">
++        <list>
++          <option value="http://0.0.0.0" />
++          <option value="http://127.0.0.1" />
++          <option value="http://activemq.apache.org/schema/" />
++          <option value="http://cxf.apache.org/schemas/" />
++          <option value="http://java.sun.com/" />
++          <option value="http://javafx.com/fxml" />
++          <option value="http://javafx.com/javafx/" />
++          <option value="http://json-schema.org/draft" />
++          <option value="http://localhost" />
++          <option value="http://maven.apache.org/POM/" />
++          <option value="http://maven.apache.org/xsd/" />
++          <option value="http://primefaces.org/ui" />
++          <option value="http://schema.cloudfoundry.org/spring/" />
++          <option value="http://schemas.xmlsoap.org/" />
++          <option value="http://tiles.apache.org/" />
++          <option value="http://www.ibm.com/webservices/xsd" />
++          <option value="http://www.jboss.com/xml/ns/" />
++          <option value="http://www.jboss.org/j2ee/schema/" />
++          <option value="http://www.springframework.org/schema/" />
++          <option value="http://www.springframework.org/security/tags" />
++          <option value="http://www.springframework.org/tags" />
++          <option value="http://www.thymeleaf.org" />
++          <option value="http://www.w3.org/" />
++          <option value="http://xmlns.jcp.org/" />
++          <option value="http://{" />
++          <option value="http://{{local_ip}}" />
++        </list>
++      </option>
++    </inspection_tool>
++    <inspection_tool class="PyArgumentListInspection" enabled="false" level="WARNING" enabled_by_default="false" />
++    <inspection_tool class="PyGlobalUndefinedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
++    <inspection_tool class="PyPep8Inspection" enabled="false" level="WEAK WARNING" enabled_by_default="false">
++      <option name="ignoredErrors">
++        <list>
++          <option value="E302" />
++          <option value="E305" />
++          <option value="E303" />
++          <option value="E741" />
++          <option value="E225" />
++        </list>
++      </option>
++    </inspection_tool>
++    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
++      <option name="ignoredErrors">
++        <list>
++          <option value="N806" />
++          <option value="N802" />
++          <option value="N803" />
++        </list>
++      </option>
++    </inspection_tool>
++    <inspection_tool class="PyRedeclarationInspection" enabled="false" level="WARNING" enabled_by_default="false" />
++    <inspection_tool class="PyShadowingBuiltinsInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
++    <inspection_tool class="PyShadowingNamesInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
++    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="false" level="WARNING" enabled_by_default="false" />
++    <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
++      <option name="processCode" value="true" />
++      <option name="processLiterals" value="true" />
++      <option name="processComments" value="true" />
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+Index: .idea/ExcaliburFRC.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/ExcaliburFRC.iml b/.idea/ExcaliburFRC.iml
+new file mode 100644
+--- /dev/null	(date 1707915620325)
++++ b/.idea/ExcaliburFRC.iml	(date 1707915620325)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module version="4">
++  <component name="PyDocumentationSettings">
++    <option name="format" value="PLAIN" />
++    <option name="myDocStringFormat" value="Plain" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1707915620331)
++++ b/.idea/misc.xml	(date 1707915620331)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.10" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	(date 1707915620340)
++++ b/.idea/inspectionProfiles/profiles_settings.xml	(date 1707915620340)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d8e25278-a420-4557-9676-0e8bde864e04\" name=\"Changes\" comment=\"Changed `static` to `Data`.\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/ExcaliburFRC.iml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Login.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Login.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Scout.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Scout.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ScoutHomePage.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ScoutHomePage.html\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FlaskConsoleOptions\" custom-start-script=\"import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\\nApp: %s [%s]\\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))\">\r\n    <envs>\r\n      <env key=\"FLASK_APP\" value=\"app\" />\r\n    </envs>\r\n    <option name=\"myCustomStartScript\" value=\"import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\\nApp: %s [%s]\\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))\" />\r\n    <option name=\"myEnvs\">\r\n      <map>\r\n        <entry key=\"FLASK_APP\" value=\"app\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"jar://$APPLICATION_HOME_DIR$/lib/app.jar!/standardSchemas/xhtml1-frameset.xsd\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2cKPeNO1PBbbp8LjVldVLLtD5Nq\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"JavaScript Debug.ScoutHomePage.html.executor\": \"Run\",\r\n    \"Python.main.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\novon\\Documents\\GitHub\\ExcaliburFRC-Scouting-site\" />\r\n      <recent name=\"C:\\Users\\novon\\Documents\\GitHub\\ExcaliburFRC-Scouting-site\\Utils\\css\" />\r\n      <recent name=\"C:\\Users\\novon\\Documents\\GitHub\\ExcaliburFRC-Scouting-site\\Utils\\js\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-50da183f06c8-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13135.95\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d8e25278-a420-4557-9676-0e8bde864e04\" name=\"Changes\" comment=\"\" />\r\n      <created>1707857393032</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1707857393032</updated>\r\n      <workItem from=\"1707912976062\" duration=\"972000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Fixed the flask server folder directory,sorted folders\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707858033203</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1707858033203</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Changed `static` to `Data`.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707858227203</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1707858227203</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Changed `static` to `Data`.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707913193399</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1707913193399</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Fixed the flask server folder directory,sorted folders\" />\r\n    <MESSAGE value=\"Changed `static` to `Data`.\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Changed `static` to `Data`.\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/ExcaliburFRC$main.coverage\" NAME=\"main Coverage Results\" MODIFIED=\"1707912991444\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9b72693b77aef2bef64ad7ab50885bd482c35ede)
++++ b/.idea/workspace.xml	(date 1707916315535)
+@@ -4,16 +4,17 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d8e25278-a420-4557-9676-0e8bde864e04" name="Changes" comment="Changed `static` to `Data`.">
++    <list default="true" id="d8e25278-a420-4557-9676-0e8bde864e04" name="Changes" comment="Merge remote-tracking branch 'origin/main'">
+       <change afterPath="$PROJECT_DIR$/.idea/ExcaliburFRC.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Login.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Scout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Scout.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ScoutHomePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/ScoutHomePage.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/autonomous.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/autonomous.HTML" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -51,8 +52,10 @@
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "JavaScript Debug.Login.html.executor": "Run",
+     "JavaScript Debug.ScoutHomePage.html.executor": "Run",
+     "Python.main.executor": "Run",
++    "Python.sql.executor": "Run",
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+@@ -88,7 +91,7 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1707857393032</updated>
+-      <workItem from="1707912976062" duration="972000" />
++      <workItem from="1707912976062" duration="3316000" />
+     </task>
+     <task id="LOCAL-00001" summary="Fixed the flask server folder directory,sorted folders">
+       <option name="closed" value="true" />
+@@ -114,7 +117,47 @@
+       <option name="project" value="LOCAL" />
+       <updated>1707913193399</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="Fixed redicting in Login.html">
++      <option name="closed" value="true" />
++      <created>1707914146773</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1707914146773</updated>
++    </task>
++    <task id="LOCAL-00005" summary="Fixed redicting in Login.html">
++      <option name="closed" value="true" />
++      <created>1707914171696</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1707914171696</updated>
++    </task>
++    <task id="LOCAL-00006" summary="Fixed redicting in Login.html">
++      <option name="closed" value="true" />
++      <created>1707915084819</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1707915084819</updated>
++    </task>
++    <task id="LOCAL-00007" summary="Fixed redicting in Login.html">
++      <option name="closed" value="true" />
++      <created>1707915280192</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1707915280192</updated>
++    </task>
++    <task id="LOCAL-00008" summary="Merge remote-tracking branch 'origin/main'">
++      <option name="closed" value="true" />
++      <created>1707915597883</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1707915597883</updated>
++    </task>
++    <option name="localTasksCounter" value="9" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -123,9 +166,12 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Fixed the flask server folder directory,sorted folders" />
+     <MESSAGE value="Changed `static` to `Data`." />
+-    <option name="LAST_COMMIT_MESSAGE" value="Changed `static` to `Data`." />
++    <MESSAGE value="Fixed redicting in Login.html" />
++    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
++    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/ExcaliburFRC$main.coverage" NAME="main Coverage Results" MODIFIED="1707912991444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/ExcaliburFRC$sql.coverage" NAME="sql Coverage Results" MODIFIED="1707915505113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/ExcaliburFRC$main.coverage" NAME="main Coverage Results" MODIFIED="1707915579717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1707915620344)
++++ b/.idea/vcs.xml	(date 1707915620344)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/sqldialects.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/sqldialects.xml b/.idea/sqldialects.xml
+new file mode 100644
+--- /dev/null	(date 1707915969328)
++++ b/.idea/sqldialects.xml	(date 1707915969328)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="SqlDialectMappings">
++    <file url="file://$PROJECT_DIR$/main.py" dialect="SQLite" />
++    <file url="PROJECT" dialect="SQLite" />
++  </component>
++</project>
+\ No newline at end of file
