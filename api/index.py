@@ -7,6 +7,12 @@ app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '0.0.0.0'
 
+DATA_DIR = os.path.join(app.root_path, 'Data')
+json_file_path = os.path.join(DATA_DIR, 'Data.JSON')
+
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR)
+
 @app.errorhandler(Exception)
 def handle_exception(e):
     return jsonify({"error": "An error occurred", "details": str(e)}), 500
@@ -17,27 +23,22 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        conn = sqlite3.connect('../Data/usersdata.db')
-        cursor = conn.cursor()
-
-        cursor.execute('SELECT * FROM users WHERE name = ?', (username,))
-        user = cursor.fetchone()
+        # Use context manager to ensure database connection is closed
+        with sqlite3.connect('../Data/usersdata.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM users WHERE name = ?', (username,))
+            user = cursor.fetchone()
 
         if user is None or user[1] != password:
             flash('Invalid username or password')
             return redirect(url_for('login'))
 
         session['username'] = username
-        return redirect(url_for('scout'))  # Redirect to Scout page
-
+        return redirect(url_for('scout'))
     return render_template("Login.html")
+
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
-    """
-    Route for the Scout page.
-    If the request method is POST, it processes the form data and updates the JSON file.
-    If the request method is GET, it returns the rendered template for the Scout page.
-    """
     try:
         if request.method == 'POST':
             data = request.get_json()
@@ -48,24 +49,20 @@ def scout():
                     try:
                         existing_data = json.load(file)
                     except json.JSONDecodeError:
-                        print("JSONDecodeError: The file is empty or not properly formatted")
+                        return jsonify({"error": "JSON Decode Error"}), 500
 
             key = data['team']
-            if key not in existing_data:
-                existing_data[key] = []
-            existing_data[key].append(data)
+            existing_data.setdefault(key, []).append(data)
 
-            try:
-                with open(json_file_path, "w") as file:
-                    json.dump(existing_data, file, indent=4)  # pretty-print the JSON data
-            except Exception as e:
-                print(f"An error occurred while writing to the file: {e}")
+            with open(json_file_path, "w") as file:
+                json.dump(existing_data, file, indent=4)
 
             return "Data saved successfully"
     except Exception as e:
-        print(f"An error occurred: {e}")
-    return render_template("Scout.html")
+        app.logger.error(f"An error occurred in /Scout: {e}")
+        return jsonify({"error": "An unexpected error occurred"}), 500
 
+    return render_template("Scout.html")
 
 @app.route('/get-json-data')
 def get_json_data():
