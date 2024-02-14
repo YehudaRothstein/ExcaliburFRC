@@ -64,7 +64,6 @@ def scout():
         print(f"An error occurred: {e}")
     return render_template("Scout.html")
 
-
 @app.route('/get-json-data')
 def get_json_data():
     """
