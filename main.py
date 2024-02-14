@@ -19,13 +19,8 @@ def login():
         cursor.execute('SELECT * FROM users WHERE name = ?', (username,))
         user = cursor.fetchone()
 
-        if user and password == '6738':
-            session['username'] = username
-            print('1')
-            return redirect(url_for('scout'))  # Redirect to Scout page
-        else:
-            flash('Invalid username or password')
-            return render_template("Login.html")
+        session['username'] = username
+        return redirect(url_for('scout'))  # Redirect to Scout page
 
     return render_template("www.excaliburfrc.com/Scout.html")
 @app.route("/Scout", methods=["POST", "GET"])
