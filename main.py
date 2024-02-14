@@ -22,7 +22,7 @@ def login():
         session['username'] = username
         return redirect(url_for('scout'))  # Redirect to Scout page
 
-    return render_template("www.excaliburfrc.com/Scout.html")
+    return render_template("Login.html")
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
     """
