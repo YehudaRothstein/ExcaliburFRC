@@ -16,20 +16,18 @@ def login():
         conn = sqlite3.connect('Data/usersdata.db')
         cursor = conn.cursor()
 
-        c.execute("SELECT * FROM users WHERE name = ?", (username,))
+        cursor.execute('SELECT * FROM users WHERE name = ?', (username,))
         user = cursor.fetchone()
 
         if user and password == '6738':
             session['username'] = username
             print('1')
-            return redirect('www.excaliburfrc.com/Scout')
+            return redirect(url_for('scout'))  # Redirect to Scout page
         else:
             flash('Invalid username or password')
             return render_template("Login.html")
 
     return render_template("www.excaliburfrc.com/Scout.html")
-
-
 @app.route("/Scout", methods=["POST", "GET"])
 def scout():
     """
@@ -39,7 +37,7 @@ def scout():
     """
     try:
         if request.method == 'POST':
-            data = request.get_json()  # Get the JSON data from the request
+            data = request.get_json()
             existing_data = {}
             json_file_path = "Data/Data.json"
             if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
