@@ -16,11 +16,12 @@ def login():
         conn = sqlite3.connect('Data/usersdata.db')
         cursor = conn.cursor()
 
-        cursor.execute("SELECT * FROM 'users' WHERE name=?", (username,))
+        c.execute("SELECT * FROM users WHERE name = ?", (username,))
         user = cursor.fetchone()
 
         if user and password == '6738':
             session['username'] = username
+            print('1')
             return redirect('www.excaliburfrc.com/Scout')
         else:
             flash('Invalid username or password')
