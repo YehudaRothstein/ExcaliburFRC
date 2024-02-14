@@ -13,7 +13,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        conn = sqlite3.connect('Data/usersdata.db')
+        conn = sqlite3.connect('../Data/usersdata.db')
         cursor = conn.cursor()
 
         cursor.execute('SELECT * FROM users WHERE name = ?', (username,))
@@ -34,7 +34,7 @@ def scout():
         if request.method == 'POST':
             data = request.get_json()
             existing_data = {}
-            json_file_path = "Data/Data.json"
+            json_file_path = "../Data/Data.JSON"
             if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
                 with open(json_file_path, "r") as file:
                     try:
@@ -65,7 +65,7 @@ def get_json_data():
     Route for getting the JSON data.
     Returns the JSON data from the static directory.
     """
-    return send_from_directory('Data', 'Data.json')
+    return send_from_directory('../Data', 'Data.json')
 
 
 @app.route("/process_form", methods=["POST"])
@@ -110,7 +110,7 @@ def send_js(path):
     Route for serving static files.
     Returns the requested static file.
     """
-    return send_from_directory('Data', path)
+    return send_from_directory('../Data', path)
 
 
 @app.route("/<usr>")
@@ -143,7 +143,7 @@ def get_json():
     Route for getting the JSON data.
     Returns the JSON data from the static directory.
     """
-    return send_from_directory('Data', 'Data.json')
+    return send_from_directory('../Data', 'Data.json')
 
 
 @app.route("/")
