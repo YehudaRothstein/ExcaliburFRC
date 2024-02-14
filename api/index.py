@@ -7,6 +7,12 @@ app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '0.0.0.0'
 
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # Log the error here
+    # For example, you might want to send it to your email or log it in a file
+    return jsonify({"error": "An error occurred", "details": str(e)}), 500
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
