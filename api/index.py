@@ -10,7 +10,7 @@ app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '0.0.0.0'
 
-DATA_DIR = os.path.join(app.root_path, 'Data')
+DATA_DIR = "/tmp/Data"
 json_file_path = os.path.join(DATA_DIR, 'Data.JSON')
 
 DATA_DIR = "/tmp/Data"
