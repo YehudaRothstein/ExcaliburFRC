@@ -3,9 +3,8 @@ from werkzeug.routing import url_quote
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory, session
 import traceback
 
-
 # Initialize Flask application
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='.')
 app.secret_key = '6738'
 socket.getaddrinfo('localhost', 5000)
 LOCAL_IP = '0.0.0.0'
