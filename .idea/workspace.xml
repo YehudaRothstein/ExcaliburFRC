@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e25278-a420-4557-9676-0e8bde864e04" name="Changes" comment="sort things according to `flask`">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d8e25278-a420-4557-9676-0e8bde864e04" name="Changes" comment="sort things according to `flask`" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +86,7 @@
       <workItem from="1707912976062" duration="5796000" />
       <workItem from="1707931456945" duration="1216000" />
       <workItem from="1707932696434" duration="3213000" />
-      <workItem from="1707936851994" duration="4315000" />
+      <workItem from="1707936851994" duration="4622000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the flask server folder directory,sorted folders">
       <option name="closed" value="true" />
@@ -290,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708003924208</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="sort things according to `flask`">
+      <option name="closed" value="true" />
+      <created>1708004414437</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1708004414437</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
