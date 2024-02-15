@@ -1,5 +1,6 @@
 import os, socket, json, sqlite3, werkzeug
 from werkzeug.routing import url_quote
+from urllib.parse import quote as url_quote
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory, session
 
 # Initialize Flask application
