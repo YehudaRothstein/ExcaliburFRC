@@ -1,6 +1,8 @@
 import os, socket, json, sqlite3, werkzeug
 from werkzeug.routing import url_quote
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, send_from_directory, session
+import traceback
+
 
 # Initialize Flask application
 app = Flask(__name__, template_folder='.')
@@ -16,9 +18,6 @@ DATA_DIR = "/tmp/Data"
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
-@app.errorhandler(Exception)
-def handle_exception(e):
-    return jsonify({"error": "An error occurred", "details": str(e)}), 500
 
 @app.route("/Login", methods=["GET", "POST"])
 def login():
