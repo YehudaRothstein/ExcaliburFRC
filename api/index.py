@@ -64,12 +64,12 @@ def scout():
 
     return render_template("Scout.html")
 
-@app.route('/get-json-data')
-def get_json_data():
-    if os.path.exists('../Data/Data.json'):
-        return send_from_directory('../Data', 'Data.json')
-    else:
-        return jsonify({"error": "File not found"}), 404
+#@app.route('/get-json-data')
+#def get_json_data():
+  #  if os.path.exists('../Data/Data.json'):
+   #     return send_from_directory('../Data', 'Data.json')
+  #  else:
+  #      return jsonify({"error": "File not found"}), 404
 
 @app.route('/get-json')
 def get_json():
