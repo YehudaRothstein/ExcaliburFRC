@@ -147,13 +147,6 @@ def ScoutHomePage ():
 def ScoutGuest ():
     return render_template("ScoutGuest.html", local_ip=LOCAL_IP)
 
-@app.route('/get-json')
-def get_json():
-    """
-    Route for getting the JSON data.
-    Returns the JSON data from the static directory.
-    """
-    return send_from_directory('../Data', 'Data.json')
 
 
 @app.route("/")
