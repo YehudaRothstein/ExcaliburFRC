@@ -11,6 +11,8 @@ LOCAL_IP = '0.0.0.0'
 DATA_DIR = os.path.join(app.root_path, 'Data')
 json_file_path = os.path.join(DATA_DIR, 'Data.JSON')
 
+DATA_DIR = "/tmp/Data"
+
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
