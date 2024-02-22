@@ -9,7 +9,7 @@
       text-align: center;
       background-color: #012265;
     }
-    p, h2, h4, button, input, label, h6  {
+    p, h2, h4, button, input, label, h6 {
         color: #d3af37;
     }
     input[id="submit"]{
@@ -17,11 +17,11 @@
         color: #012265;
         border: none;
     }
-    input[name="scouter_name"], input[name="submit"], input[name="team"], input[name="qual_number"], select {
+    input[name="scouter_name"], input[name="submit"], input[name="team"], input[name="qual_number"], input[name = "manualClimbTime"] , select, textarea {
         background-color: #d3af37;
         color: #012265;
     }
-    input[id="counter2"], input[id="counter1"],  input[id="counter7"] , input[id="counter3"], input[id="counter4"], input[id="counter5"], input[id="counter6"], input[id="counter8"] {
+    input[id="counter2"], input[id="counter1"],  input[id="counter7"] , input[id="counter3"],input[id="counter13"], input[id="counter4"], input[id="counter5"], input[id="counter6"], input[id="counter8"] {
         background-color: #012265;
         color: #d3af37;
         border: none;
@@ -163,6 +163,13 @@
         <button onclick="event.preventDefault(); updateCounter(1, 'counter6', 'Teleop')">+</button>
         </div>
             <br>
+                <h6>Shooting To Speaker Misses:</h6>
+    <div class="button-set">
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter13', 'Teleop')">-</button>
+        <label for="counter13"></label><input type="text" id="counter13" value="0" readonly>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter13', 'Teleop')">+</button>
+        </div>
+            <br>
 <hr>
     <h2>EndGame</h2>
     <title>Timer Climb</title>
@@ -180,47 +187,88 @@
 
       </style>
 
-        <h6>Climb timer:</h6>
+<h6>Choose Climb Time Entry Method:</h6>
+<select id="climbChoice" name="climbChoice" onchange="toggleClimbEntry()">
+    <option value="timer" selected>Use Timer</option>
+    <option value="manual">Manual Entry</option>
+</select>
+<br>
+<div id="manualClimbContainer" style="display: none;">
+    <h6>Manual Climb Time (seconds):</h6>
+    <input type="number" id="manualClimbTime" name="manualClimbTime" placeholder="Enter climb time" step="1">
+</div>
+<br>
+<h6>Climb timer:</h6>
 <button id="timerButton" onclick="toggleTimer(event)">Start Timer</button>
 <button id="resetTimerButton" onclick="resetTimer(event)">Reset Timer</button>
 
-    <p id="timerDisplay">Timer: 0.00 seconds</p>
+<p id="timerDisplay">Timer: 0.00 seconds</p>
 
-    <script>
-      let timer;
-      let isTimerRunning = false;
-      let milliseconds = 0;
 
-function toggleTimer(event) {
-    event.preventDefault();
-    if (isTimerRunning) {
-        clearInterval(timer);
-        document.getElementById('timerButton').innerText = 'Start Climb';
+<script>
+    let timer;
+    let isTimerRunning = false;
+    let milliseconds = 0;
+
+function toggleClimbEntry() {
+    const climbChoice = document.getElementById('climbChoice').value;
+    const manualClimbContainer = document.getElementById('manualClimbContainer');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const timerButton = document.getElementById('timerButton');
+    const resetTimerButton = document.getElementById('resetTimerButton');
+
+    if (climbChoice === 'manual') {
+        manualClimbContainer.style.display = 'block';
+        timerDisplay.style.display = 'none';
+        timerButton.style.display = 'none';
+        resetTimerButton.style.display = 'none';
     } else {
-        timer = setInterval(updateTimer, 10);
-        document.getElementById('timerButton').innerText = 'Stop Climb';
+        manualClimbContainer.style.display = 'none';
+        timerDisplay.style.display = 'block';
+        timerButton.style.display = 'inline-block';
+        resetTimerButton.style.display = 'inline-block';
     }
-    isTimerRunning = !isTimerRunning;
-}
-function resetTimer(event) {
-    event.preventDefault(); // Prevent any default action
-    if (isTimerRunning) {
-        clearInterval(timer); // Stop the timer if it's running
-        isTimerRunning = false; // Update the timer running status
-        document.getElementById('timerButton').innerText = 'Start Climb'; // Reset the button text
-    }
-    milliseconds = 0; // Reset the milliseconds counter
-    document.getElementById('timerDisplay').innerText = 'Timer: 0.00 seconds'; // Reset the timer display
 }
 
+    function toggleTimer(event) {
+        event.preventDefault();
+        const manualClimbContainer = document.getElementById('manualClimbContainer');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const timerButton = document.getElementById('timerButton');
 
-      function updateTimer() {
+        if (isTimerRunning) {
+            clearInterval(timer);
+            timerButton.innerText = 'Start Climb';
+        } else {
+            if (document.getElementById('climbChoice').value === 'manual') {
+                const manualClimbTime = parseFloat(document.getElementById('manualClimbTime').value) || 0;
+                alert('Manual Climb Time: ' + manualClimbTime + ' seconds');
+            } else {
+                timer = setInterval(updateTimer, 10);
+                timerButton.innerText = 'Stop Climb';
+            }
+        }
+
+        isTimerRunning = !isTimerRunning;
+    }
+
+    function resetTimer(event) {
+        event.preventDefault();
+        if (isTimerRunning) {
+            clearInterval(timer);
+            isTimerRunning = false;
+            document.getElementById('timerButton').innerText = 'Start Climb';
+        }
+        milliseconds = 0;
+        document.getElementById('timerDisplay').innerText = 'Timer: 0.00 seconds';
+    }
+
+    function updateTimer() {
         milliseconds += 10;
         const seconds = (milliseconds / 1000).toFixed(2);
         document.getElementById('timerDisplay').innerText = 'Timer: ' + seconds + ' seconds';
-      }
-    </script>
-
+    }
+</script>
 
     <h6>Trap:</h6>
     <div class="button-set">
@@ -236,7 +284,7 @@ function resetTimer(event) {
         <label for="vehicle2">Climbed with another robot</label>
     </div>
           <br>
-      <h4> Please Choose One or More:</h4>
+      <h4> From Where Did The Robot Shoot:</h4>
 <input type="checkbox" id="end1" name="Another checkbox" value="Another checkbox"> <label for="vehicle2">Close to the speaker</label>
 <br>
 <input type="checkbox" id="end2" name="Another checkbox" value="Another checkbox"> <label for="vehicle2">From Our Area</label>
@@ -248,8 +296,14 @@ function resetTimer(event) {
 function submitForm(event) {
     event.preventDefault(); // Prevent the traditional form submission
     const timerDisplayText = document.getElementById('timerDisplay').innerText;
-    const climbTimerSecondsMatch = timerDisplayText.match(/(\d+\.\d+)/);
-    const climbTimerSeconds = climbTimerSecondsMatch ? parseFloat(climbTimerSecondsMatch[0]) : 0;
+    const climbChoice = document.getElementById('climbChoice').value;
+    let climbTimerSeconds;
+
+    if (climbChoice === 'manual') {
+        climbTimerSeconds = parseFloat(document.getElementById('manualClimbTime').value) || 0;
+    } else {
+        climbTimerSeconds = parseFloat(timerDisplayText.split(":")[1]) || 0;
+    }
 
     const validTeams = [1574, 1576, 1577, 1580,
         1690, 1942, 2230, 2630,
@@ -273,13 +327,22 @@ function submitForm(event) {
         teleop_amp: document.getElementById('counter4').value,
         teleop_speaker: document.getElementById('counter5').value,
         teleop_pins: document.getElementById('counter6').value,
+        speaker_misses: document.getElementById('counter13').value,
         endgame_trap: document.getElementById('counter8').value,
         climb_timer_seconds: climbTimerSeconds,
         climbed_with_another_robot: document.getElementById('vehicle6').checked,
         close_to_speaker: document.getElementById('end1').checked,
         from_our_area: document.getElementById('end2').checked,
         from_the_middle: document.getElementById('end3').checked,
+
     };
+    const comments = {
+        scouter_name: document.querySelector('input[name="scouter_name"]').value,
+        qual_number: document.querySelector('input[name="qual_number"]').value,
+        team: document.querySelector('input[name="team"]').value,
+        comments: document.querySelector('textarea[name="comments"]').value,
+
+    }
    const teamNumber = document.getElementsByName('team')[0].value;
    const qual_Number = document.getElementsByName('qual_number')[0].value;
 
@@ -294,7 +357,6 @@ function submitForm(event) {
         }
 
 
-    // AJAX request using Fetch API as an example
     fetch('/Scout', {
         method: 'POST',
         headers: {
@@ -320,7 +382,9 @@ function submitForm(event) {
 }
 
 </script>
-
+<h4>Comments:</h4>
+<textarea name="comments" rows="4" cols="50" placeholder="Enter any additional comments here..."></textarea>
+<br>
 
 <br>
     <input type="submit" value="Submit">
