@@ -14,7 +14,6 @@ def scout():
         if request.method == 'POST':
             data = request.get_json() 
             json_file_path = "/home/yehudarothstein/mysite/static/Data.JSON"
-            comments_file_path = "/home/yehudarothstein/mysite/static/Comments.JSON"
             existing_data = []
             
             if os.path.exists(json_file_path) and os.path.getsize(json_file_path) > 0:
@@ -82,4 +81,3 @@ def get_json():
 
 if __name__ == '__main__':
     app.run()
-
