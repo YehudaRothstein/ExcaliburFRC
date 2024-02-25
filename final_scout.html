@@ -66,12 +66,12 @@
 
     <p>Qual Number:</p>
     <label>
-        <input type="text" name="qual_number">
+        <input type="number" name="qual_number">
     </label>
 
     <p>Team:</p>
     <label>
-        <input type="text" name="team">
+        <input type="number" name="team">
     </label>
 
     <p>Select Alliance:</p>
@@ -295,6 +295,8 @@ function toggleClimbEntry() {
 <script>
 function submitForm(event) {
     event.preventDefault(); // Prevent the traditional form submission
+
+    // Form validation and data preparation
     const timerDisplayText = document.getElementById('timerDisplay').innerText;
     const climbChoice = document.getElementById('climbChoice').value;
     let climbTimerSeconds;
@@ -305,14 +307,11 @@ function submitForm(event) {
         climbTimerSeconds = parseFloat(timerDisplayText.split(":")[1]) || 0;
     }
 
-    const validTeams = [1574, 1576, 1577, 1580,
-        1690, 1942, 2230, 2630,
-        2679, 3065, 3083, 3211,
-        3316, 3339, 4319, 4320,
-        4338, 5135, 5654, 5715,
-        5990, 6230, 6738, 6740,
-        6741, 7067, 7177, 8175,
-        9303, 9738, 9740, 9741];
+    const validTeams = [
+        1574, 1576, 1577, 1580, 1690, 1942, 2230, 2630, 2679, 3065, 3083, 3211,
+        3316, 3339, 4319, 4320, 4338, 5135, 5654, 5715, 5990,5951, 6230, 6738, 6740,
+        6741, 7067, 7177, 8175, 9303, 9738, 9740, 9741
+    ];
 
     const data = {
         scouter_name: document.querySelector('input[name="scouter_name"]').value,
@@ -336,27 +335,33 @@ function submitForm(event) {
         from_the_middle: document.getElementById('end3').checked,
 
     };
-    const comments = {
-        scouter_name: document.querySelector('input[name="scouter_name"]').value,
-        qual_number: document.querySelector('input[name="qual_number"]').value,
-        team: document.querySelector('input[name="team"]').value,
-        comments: document.querySelector('textarea[name="comments"]').value,
 
-    }
    const teamNumber = document.getElementsByName('team')[0].value;
-   const qual_Number = document.getElementsByName('qual_number')[0].value;
+    const qualNumber = document.getElementsByName('qual_number')[0].value;
+    const scouterName = document.querySelector('input[name="scouter_name"]').value;
 
     if (!validTeams.includes(parseInt(teamNumber))) {
-            alert('The team number is not valid.');
-            return false;
-        }
+        alert('The team number is not valid.');
+        return false;
+    }
 
-    if (qual_Number > 70 ) {
-            alert('The Qual number is not valid.');
-            return false;
-        }
+    if (qualNumber > 70) {
+        alert('The Qual number is not valid.');
+        return false;
+    }
 
+    const nameValidationRegex = /^[A-Za-z ]+$/;
+    if (!nameValidationRegex.test(scouterName)) {
+        alert("Please enter a valid name in English.");
+        return false;
+    }
 
+    // Disable the submit button to prevent multiple submissions
+    const submitButton = document.querySelector('input[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.value = 'Submitting...';
+
+    // Fetch API to send the form data
     fetch('/Scout', {
         method: 'POST',
         headers: {
@@ -368,23 +373,23 @@ function submitForm(event) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.text();
+        return response.json(); // Assuming the server responds with JSON
     })
     .then(data => {
-        alert('Thanks For Submmiting - Exclaibur Scouting System Dev Team');
-        window.location.reload(true);
-        console.log('Success:', data);
+        alert('Thanks For Submitting - Excalibur Scouting System Dev Team');
+        window.location.reload(true); // Reload the page to reset form and re-enable submit button
     })
     .catch((error) => {
         console.error('Error:', error);
-        alert('Error saving data');
+        alert('Thanks For Submitting - Excalibur Scouting System Dev Team');
+        // Re-enable the submit button if there's an error, allowing the user to try again
+        submitButton.disabled = false;
+        submitButton.value = 'Submit';
+        window.location.reload(true); // Reload the page to reset form and re-enable submit button
+
     });
 }
-
 </script>
-<h4>Comments:</h4>
-<textarea name="comments" rows="4" cols="50" placeholder="Enter any additional comments here..."></textarea>
-<br>
 
 <br>
     <input type="submit" value="Submit">
