@@ -21,7 +21,7 @@
         background-color: #d3af37;
         color: #012265;
     }
-    input[id="counter2"], input[id="counter1"],  input[id="counter7"] , input[id="counter3"],input[id="counter13"], input[id="counter4"], input[id="counter5"], input[id="counter6"], input[id="counter8"] {
+    input[id="counter2"], input[id="counter1"],  input[id="counter7"] , input[id="counter3"],input[id="counter67"],input[id="counter13"], input[id="counter4"], input[id="counter5"], input[id="counter6"], input[id="counter8"] {
         background-color: #012265;
         color: #d3af37;
         border: none;
@@ -170,6 +170,13 @@
         <button onclick="event.preventDefault(); updateCounter(1, 'counter13', 'Teleop')">+</button>
         </div>
             <br>
+                            <h6>Placing At AMP Misses:</h6>
+    <div class="button-set">
+        <button onclick="event.preventDefault(); updateCounter(-1, 'counter67', 'Teleop')">-</button>
+        <label for="counter67"></label><input type="text" id="counter67" value="0" readonly>
+        <button onclick="event.preventDefault(); updateCounter(1, 'counter67', 'Teleop')">+</button>
+        </div>
+            <br>
 <hr>
     <h2>EndGame</h2>
     <title>Timer Climb</title>
@@ -204,8 +211,15 @@
 
 <p id="timerDisplay">Timer: 0.00 seconds</p>
 
-
+<input type="checkbox" id="end6" name="Another checkbox" value="Another checkbox"> <label>Didn't Climb</label>
+<br>
+<br>
 <script>
+    function toggleDidntClimb() {
+        const didntClimbCheckbox = document.getElementById('end6');
+        didntClimbCheckbox.checked = !didntClimbCheckbox.checked; // Toggle the checkbox value
+    }
+
     let timer;
     let isTimerRunning = false;
     let milliseconds = 0;
@@ -291,6 +305,12 @@ function toggleClimbEntry() {
 <br>
 <input type="checkbox" id="end3" name="Another checkbox" value="Another checkbox"> <label for="vehicle2">From the Middle</label>
 <br>
+<h4>Comments:</h4>
+<label>
+    <textarea name="comments" rows="4" cols="50"></textarea>
+</label>
+<br>
+<br>
 
 <script>
 function submitForm(event) {
@@ -308,9 +328,11 @@ function submitForm(event) {
     }
 
     const validTeams = [
-        1574, 1576, 1577, 1580, 1690, 1942, 2230, 2630, 2679, 3065, 3083, 3211,
-        3316, 3339, 4319, 4320, 4338, 5135, 5654, 5715, 5990,5951, 6230, 6738, 6740,
-        6741, 7067, 7177, 8175, 9303, 9738, 9740, 9741
+        1574, 1576, 1577, 1580, 1690, 2679,
+        3065, 3083, 3316, 3339, 3835, 4338,
+        4416, 5135, 5291, 5635, 5654, 5715,
+        5987, 6230, 6738, 6740, 6741, 7067,
+        7177, 7845, 8175, 9740
     ];
 
     const data = {
@@ -333,12 +355,15 @@ function submitForm(event) {
         close_to_speaker: document.getElementById('end1').checked,
         from_our_area: document.getElementById('end2').checked,
         from_the_middle: document.getElementById('end3').checked,
-
+        climbed: !document.getElementById('end6').checked,
+        comments: document.querySelector('textarea[name="comments"]').value,
+        amp_misses: document.getElementById('counter67').value,
     };
 
    const teamNumber = document.getElementsByName('team')[0].value;
     const qualNumber = document.getElementsByName('qual_number')[0].value;
     const scouterName = document.querySelector('input[name="scouter_name"]').value;
+    data.comments = encodeURIComponent(data.comments);
 
     if (!validTeams.includes(parseInt(teamNumber))) {
         alert('The team number is not valid.');
