@@ -4,10 +4,6 @@
 
 - ### Welcome to the official repository for FRC Team 6738 Excalibur's scouting website 🚀
 
-```yml 
-- Still in progress, hope to finish soon....
-```
-
 
 ## *If you liked the project and want to help us please contact someone from here:*
 ## Github:
